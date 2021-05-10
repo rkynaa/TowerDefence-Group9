@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    private float _health = 0;
+    
+    private float _health = 10;
     float Health { 
         get { return _health; } 
         set 
@@ -22,7 +23,8 @@ public class Entity : MonoBehaviour
         } 
     }
 
-    private float maxHealth = 0;
+    [SerializeField]
+    private float maxHealth = 10;
     float GetMaxHealth { get { return maxHealth; } }
 
     bool _isDead = false;
@@ -37,13 +39,19 @@ public class Entity : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        Health = maxHealth;
+    }
+
     /// <summary>
     /// Reduces the entity's health by damage. Can also be used to heal the entity
     /// </summary>
     /// <param name="damage">The amount to reduce the entity's health by</param>
-    public void DamageEntity(int damage)
+    public void DamageEntity(float damage)
     {
         Health -= damage;
+        Debug.Log(name + ": Health = " + Health);
     }
 
     /// <summary>
@@ -52,6 +60,7 @@ public class Entity : MonoBehaviour
     /// <returns>If the entity died.</returns>
     public virtual bool OnDeath()
     {
+        Debug.Log(name + ": Died");
         return true; 
     }
 

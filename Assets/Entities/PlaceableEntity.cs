@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlaceableEntity : Entity
+public abstract class PlaceableEntity : Entity
 {
     [SerializeField] bool Moveable = true;
     [SerializeField] bool Spawner = true;
