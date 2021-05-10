@@ -56,15 +56,18 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Entity.cs" />
-    <Compile Include="Assets\Entities\PlaceableEntity.cs" />
-    <Compile Include="Assets\Entities\EnemyEntity.cs" />
-    <Compile Include="Assets\Entities\Placeables\Towers\SampleTower.cs" />
-    <Compile Include="Assets\Entities\Placeables\CoreEntity.cs" />
-    <Compile Include="Assets\Entities\Placeables\TowerEntity.cs" />
-    <Compile Include="Assets\WaveSpawner.cs" />
+    <Compile Include="Assets\Scripts\WaveSpawner.cs" />
+    <Compile Include="Assets\Scripts\Entity.cs" />
+    <Compile Include="Assets\Scripts\Entities\PlaceableEntity.cs" />
+    <Compile Include="Assets\Scripts\Entities\EnemyEntity.cs" />
+    <Compile Include="Assets\Scripts\Entities\Placeables\Towers\SampleTower.cs" />
+    <Compile Include="Assets\Scripts\Entities\Placeables\CoreEntity.cs" />
+    <Compile Include="Assets\Scripts\Entities\Placeables\TowerEntity.cs" />
+    <Compile Include="Assets\Scripts\GameMaster.cs" />
+    <Compile Include="Assets\Scripts\Entities\Enemies\SampleEnemy.cs" />
   </ItemGroup>
   <ItemGroup>
+     <None Include="Assets\Art\td_basic_towers\Source.txt" />
     <Reference Include="UnityEngine">
       <HintPath>D:\Program Files\Unity\Editors\2020.3.7f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
