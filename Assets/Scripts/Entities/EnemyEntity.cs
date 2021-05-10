@@ -18,7 +18,7 @@ public class EnemyEntity : Entity
     public Transform partToRotate = null;
 
     // Start is called before the first frame update
-    protected virtual void Start()
+    protected override void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         InvokeRepeating("_Attack", attackSpeed, attackSpeed);
@@ -76,7 +76,7 @@ public class EnemyEntity : Entity
 
         Vector3 dir = target.transform.position - transform.position;
 
-        Quaternion rotation = Quaternion.LookRotation(dir, transform.TransformDirection(Vector3.up));
+        Quaternion rotation = Quaternion.LookRotation(dir, transform.TransformDirection(Vector3.back));
         partToRotate.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
 
         // move towards the target

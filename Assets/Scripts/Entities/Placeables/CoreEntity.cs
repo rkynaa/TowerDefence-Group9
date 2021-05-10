@@ -4,9 +4,21 @@ using UnityEngine;
 
 public class CoreEntity : PlaceableEntity
 {
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         EnemyEntity.core = this;
+    }
+
+    protected override void CancelMove()
+    {
+        return;
+    }
+
+    protected override void Placed()
+    {
+        // Activate
     }
 
     private void OnDestroy()

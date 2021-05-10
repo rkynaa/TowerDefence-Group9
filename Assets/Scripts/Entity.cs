@@ -24,8 +24,8 @@ public class Entity : MonoBehaviour
     }
 
     [SerializeField]
-    private float maxHealth = 10;
-    float GetMaxHealth { get { return maxHealth; } }
+    private float _maxHealth = 10;
+    public float MaxHealth { get { return _maxHealth; } }
 
     bool _isDead = false;
     bool isDead { get { return _isDead; }
@@ -39,9 +39,9 @@ public class Entity : MonoBehaviour
         }
     }
 
-    private void Start()
+    protected virtual void Start()
     {
-        Health = maxHealth;
+        Health = _maxHealth;
     }
 
     /// <summary>
@@ -62,10 +62,5 @@ public class Entity : MonoBehaviour
     {
         Debug.Log(name + ": Died");
         return true; 
-    }
-
-    private void OnMouseDown()
-    {
-        GetComponent<SpriteRenderer>().color = Color.red;
     }
 }

@@ -22,8 +22,10 @@ public class TowerEntity : PlaceableEntity
     public Transform partToRotate = null;
 
     // Start is called before the first frame update
-    protected virtual void Start()
+    protected override void Start()
     {
+        base.Start();
+
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         if (partToRotate == null)
         {
@@ -31,7 +33,10 @@ public class TowerEntity : PlaceableEntity
         }
     }
 
-
+    protected override void Placed()
+    {
+        tag = "Tower";
+    }
 
     void UpdateTarget()
     {
@@ -61,9 +66,11 @@ public class TowerEntity : PlaceableEntity
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        if (target == null)
+        base.Update();
+
+        if (target == null || curState != State.ACTIVE)
             return;
 
         Vector3 dir = target.transform.position - transform.position;
@@ -85,15 +92,14 @@ public class TowerEntity : PlaceableEntity
         if (target == null)
             return;
 
-        
-
         Attack();
     }
 
     public virtual void Attack()
     {
-        Instantiate(attackProjectile, firePoint);
-        target.DamageEntity(1);
+        GameObject projectileGO = Instantiate(attackProjectile, firePoint.position, partToRotate.rotation);
+        Projectile proj = projectileGO.GetComponent<Projectile>();
+        proj.Fire(target.transform);
     }
 
     private void OnDrawGizmosSelected()

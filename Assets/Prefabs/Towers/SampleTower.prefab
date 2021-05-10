@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4861524635213119831}
   m_Layer: 0
   m_Name: SampleTower
-  m_TagString: Tower
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,11 +109,10 @@ Transform:
   m_GameObject: {fileID: 4861524635213119826}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.38666376, y: 0.38666376, z: 0.38666376}
+  m_LocalScale: {x: 0.23558596, y: 0.23558596, z: 0.23558596}
   m_Children:
   - {fileID: 6683675132700892530}
   - {fileID: 2832506304176123852}
-  - {fileID: 1826141318287132238}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -145,13 +144,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a0ed95428615c740b025892ab4ab934, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  _maxHealth: 10
   Moveable: 1
   Spawner: 1
+  curState: 0
   range: 4
   attackSpeed: 1
   attackCountdown: 0
-  attackProjectile: {fileID: 0}
+  attackProjectile: {fileID: 2915657437792091857, guid: 70bcb8f8b4ef5a649aec7ff18ed00c0c, type: 3}
   firePoint: {fileID: 1826141318287132238}
   enemyTag: Enemy
   partToRotate: {fileID: 6683675132700892530}
@@ -264,8 +264,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 2.274, z: -2.3688295}
   m_LocalScale: {x: 1.2641171, y: 1.2641171, z: 1.2641171}
   m_Children: []
-  m_Father: {fileID: 4861524635213119824}
-  m_RootOrder: 2
+  m_Father: {fileID: 6683675132700892530}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9117660011140590030
 GameObject:
@@ -295,6 +295,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1481075294835286160}
+  - {fileID: 1826141318287132238}
   m_Father: {fileID: 4861524635213119824}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

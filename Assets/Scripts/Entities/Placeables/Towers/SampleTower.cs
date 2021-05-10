@@ -12,7 +12,7 @@ public class SampleTower : TowerEntity
 
     public override void Attack()
     {
-
-        target.DamageEntity(5);
+        base.Attack();
+        // target.DamageEntity(5);
     }
 }

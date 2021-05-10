@@ -4,30 +4,108 @@ using UnityEngine;
 
 public abstract class PlaceableEntity : Entity
 {
-    [SerializeField] bool Moveable = true;
-    [SerializeField] bool Spawner = true;
-    bool isPlaced = false;
+    public bool Moveable = true;
+    public bool Spawner = true;
 
-    private void OnMouseDrag()
+    public enum State
     {
-        if (!isPlaced && Moveable)
+        DISABLED,
+        MOVING,
+        ACTIVE
+    }
+
+    public State curState = State.DISABLED;
+
+    private bool validLocation = true;
+
+    private Color[] startColor;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        startColor = new Color[spriteRenderers.Length];
+
+        for (int i = 0; i < spriteRenderers.Length; i++)
         {
+            startColor[i] = spriteRenderers[i].color;
+        }
+    }
+
+    protected virtual void Update()
+    {
+        if(curState == State.MOVING)
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                CancelMove();
+                return;
+            }
+
             Vector3 newPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             newPos.z = 0;
             transform.position = newPos;
         }
     }
 
-    private void OnMouseDown()
+    protected virtual void CancelMove()
     {
-        if(!isPlaced && Spawner)
+        Destroy(gameObject);
+    }
+
+    protected void OnMouseDown()
+    {
+        if(Moveable)
         {
-            Instantiate(this);
+            if(Spawner)
+            {
+                GameObject copy = Instantiate(gameObject);
+                PlaceableEntity copyScript = copy.GetComponent<PlaceableEntity>();
+                copyScript.curState = State.MOVING;
+                copyScript.Spawner = false;
+            }
+            else
+            {
+                curState = State.MOVING;
+            }
         }
     }
 
-    private void OnMouseUp()
+    protected void OnMouseUp()
     {
-        isPlaced = true;
+        if(validLocation)
+        {
+            Moveable = false;
+            curState = State.ACTIVE;
+            Placed();
+        }
+    }
+
+    protected abstract void Placed();
+
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(curState == State.MOVING)
+        {
+            validLocation = false;
+            foreach (SpriteRenderer sprite in GetComponentsInChildren<SpriteRenderer>())
+            {
+                sprite.color = Color.red;
+            }
+        }
+    }
+
+    protected virtual void OnCollisionExit2D(Collision2D collision)
+    {
+        if (curState == State.MOVING)
+        {
+            validLocation = true;
+            SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+            for (int i = 0; i < spriteRenderers.Length; i++)
+            {
+                spriteRenderers[i].color = startColor[i];
+            }
+        }
     }
 }

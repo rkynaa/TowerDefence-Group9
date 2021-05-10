@@ -59,12 +59,13 @@
     <Compile Include="Assets\Scripts\WaveSpawner.cs" />
     <Compile Include="Assets\Scripts\Entity.cs" />
     <Compile Include="Assets\Scripts\Entities\PlaceableEntity.cs" />
+    <Compile Include="Assets\Scripts\Entities\Enemies\SampleEnemy.cs" />
     <Compile Include="Assets\Scripts\Entities\EnemyEntity.cs" />
+    <Compile Include="Assets\Scripts\GameMaster.cs" />
     <Compile Include="Assets\Scripts\Entities\Placeables\Towers\SampleTower.cs" />
     <Compile Include="Assets\Scripts\Entities\Placeables\CoreEntity.cs" />
     <Compile Include="Assets\Scripts\Entities\Placeables\TowerEntity.cs" />
-    <Compile Include="Assets\Scripts\GameMaster.cs" />
-    <Compile Include="Assets\Scripts\Entities\Enemies\SampleEnemy.cs" />
+    <Compile Include="Assets\Scripts\Projectile.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Art\td_basic_towers\Source.txt" />
