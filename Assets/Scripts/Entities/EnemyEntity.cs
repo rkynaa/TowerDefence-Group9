@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyEntity : Entity
+[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
+public abstract class EnemyEntity : Entity
 {
     protected Entity target;
     public static CoreEntity core = null;
@@ -76,7 +78,7 @@ public class EnemyEntity : Entity
 
         Vector3 dir = target.transform.position - transform.position;
 
-        Quaternion rotation = Quaternion.LookRotation(dir, transform.TransformDirection(Vector3.back));
+        Quaternion rotation = Quaternion.LookRotation(dir, transform.TransformDirection(Vector3.up));
         partToRotate.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
 
         // move towards the target

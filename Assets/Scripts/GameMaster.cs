@@ -6,9 +6,4 @@ public class GameMaster : MonoBehaviour
 {
     public static int EnemiesAlive = 0;
 
-    public struct Enemies
-    {
-        public EnemyEntity Sample;
-
-    }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerEntity : PlaceableEntity
+public abstract class TowerEntity : PlaceableEntity
 {
     protected Entity target;
 

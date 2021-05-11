@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity : MonoBehaviour
+public abstract class Entity : MonoBehaviour
 {
     
     private float _health = 10;
@@ -10,7 +10,7 @@ public class Entity : MonoBehaviour
         get { return _health; } 
         set 
         {
-            if (isDead)
+            if (IsDead)
             {
                 return;
             }
@@ -18,7 +18,7 @@ public class Entity : MonoBehaviour
             _health = value;
             if (_health <= 0)
             {
-                isDead = OnDeath();
+                IsDead = OnDeath();
             }
         } 
     }
@@ -28,7 +28,7 @@ public class Entity : MonoBehaviour
     public float MaxHealth { get { return _maxHealth; } }
 
     bool _isDead = false;
-    bool isDead { get { return _isDead; }
+    bool IsDead { get { return _isDead; }
         set
         {
             _isDead = value;
@@ -51,7 +51,6 @@ public class Entity : MonoBehaviour
     public void DamageEntity(float damage)
     {
         Health -= damage;
-        Debug.Log(name + ": Health = " + Health);
     }
 
     /// <summary>
@@ -60,7 +59,6 @@ public class Entity : MonoBehaviour
     /// <returns>If the entity died.</returns>
     public virtual bool OnDeath()
     {
-        Debug.Log(name + ": Died");
         return true; 
     }
 }

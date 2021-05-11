@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public abstract class PlaceableEntity : Entity
 {
     public bool Moveable = true;
@@ -63,7 +64,7 @@ public abstract class PlaceableEntity : Entity
                 GameObject copy = Instantiate(gameObject);
                 PlaceableEntity copyScript = copy.GetComponent<PlaceableEntity>();
                 copyScript.curState = State.MOVING;
-                copyScript.Spawner = false;
+                // copyScript.Spawner = false;
             }
             else
             {
@@ -77,6 +78,7 @@ public abstract class PlaceableEntity : Entity
         if(validLocation)
         {
             Moveable = false;
+            Spawner = false;
             curState = State.ACTIVE;
             Placed();
         }
