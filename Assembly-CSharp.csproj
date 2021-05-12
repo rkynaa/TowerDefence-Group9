@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Entities\Placeables\CoreEntity.cs" />
     <Compile Include="Assets\Scripts\Entities\Placeables\TowerEntity.cs" />
     <Compile Include="Assets\Scripts\Projectile.cs" />
+    <Compile Include="Assets\Scripts\BuildManager.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Art\td_basic_towers\Source.txt" />
