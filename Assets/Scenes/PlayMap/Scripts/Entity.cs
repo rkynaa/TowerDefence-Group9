@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Entity : MonoBehaviour
 {
+    [Header("Entity")]
+    public HealthBar healthBar;
     
     private float _health = 10;
     float Health { 
@@ -42,6 +45,11 @@ public abstract class Entity : MonoBehaviour
     protected virtual void Start()
     {
         Health = _maxHealth;
+        if(healthBar == null)
+        {
+            healthBar = GetComponentInChildren<HealthBar>();
+        }
+        healthBar.maxHealth = MaxHealth;
     }
 
     /// <summary>
@@ -51,6 +59,7 @@ public abstract class Entity : MonoBehaviour
     public void DamageEntity(float damage)
     {
         Health -= damage;
+        healthBar.Value = Health;
     }
 
     /// <summary>

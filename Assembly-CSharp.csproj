@@ -56,17 +56,20 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\RoundSpawner.cs" />
-    <Compile Include="Assets\Scripts\Entity.cs" />
-    <Compile Include="Assets\Scripts\Entities\PlaceableEntity.cs" />
-    <Compile Include="Assets\Scripts\Entities\Enemies\SampleEnemy.cs" />
-    <Compile Include="Assets\Scripts\Entities\EnemyEntity.cs" />
-    <Compile Include="Assets\Scripts\GameMaster.cs" />
-    <Compile Include="Assets\Scripts\Entities\Placeables\Towers\SampleTower.cs" />
-    <Compile Include="Assets\Scripts\Entities\Placeables\CoreEntity.cs" />
-    <Compile Include="Assets\Scripts\Entities\Placeables\TowerEntity.cs" />
-    <Compile Include="Assets\Scripts\Projectile.cs" />
-    <Compile Include="Assets\Scripts\BuildManager.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\RoundSpawner.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entity.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\PlaceableEntity.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Enemies\SampleEnemy.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\EnemyEntity.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\GameMaster.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\Towers\SampleTower.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\BuildManager.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\CoreEntity.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\TowerEntity.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Projectile.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Upgrade.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\HealthBar.cs" />
+    <Compile Include="Assets\Scripts\Roman.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Art\td_basic_towers\Source.txt" />

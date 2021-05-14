@@ -10,11 +10,16 @@ public abstract class TowerEntity : PlaceableEntity
 
     public float range = 4f;
     public float attackSpeed = 1f;
-    public float attackCountdown = 0f;
+    private float attackCountdown = 0f;
+
+    [Header("Upgrades")]
+
+    protected HashSet<Upgrade> upgrades = new HashSet<Upgrade>();
+    protected List<Upgrade> upgradesAvailable = new List<Upgrade>();
 
     [Header("Unity Fields")]
 
-    public GameObject attackProjectile;
+    public Projectile attackProjectile;
     public Transform firePoint;
 
     public string enemyTag = "Enemy";
@@ -80,26 +85,52 @@ public abstract class TowerEntity : PlaceableEntity
 
         if (attackCountdown <= 0f)
         {
-            _Attack();
+            if (target != null)
+                foreach (Upgrade upgrade in upgrades)
+                {
+                    upgrade.OnAttack();
+                }
+                Attack();
             attackCountdown = 1 / attackSpeed;
         }
 
         attackCountdown -= Time.deltaTime;
     }
 
-    void _Attack()
-    {
-        if (target == null)
-            return;
-
-        Attack();
-    }
-
     public virtual void Attack()
     {
-        GameObject projectileGO = Instantiate(attackProjectile, firePoint.position, partToRotate.rotation);
+        GameObject projectileGO = Instantiate(attackProjectile.gameObject, firePoint.position, partToRotate.rotation);
         Projectile proj = projectileGO.GetComponent<Projectile>();
+        proj.callbackUpgrades = upgrades;
         proj.Fire(target.transform);
+    }
+
+    /// <summary>
+    /// Adds an upgrade to be bought from the upgrade menu 
+    /// </summary>
+    /// <param name="upgrade"></param>
+    public void AddUpgrade(Upgrade upgrade)
+    {
+        upgradesAvailable.Add(upgrade);
+    }
+
+    /// <summary>
+    /// Removes an upgrade to no longer be able to buy from the upgrade menu 
+    /// </summary>
+    /// <param name="upgrade"></param>
+    public void RemoveUpgrade(Upgrade upgrade)
+    {
+        upgradesAvailable.Remove(upgrade);
+    }
+
+    /// <summary>
+    /// Upgrades the tower with a new upgrade
+    /// </summary>
+    /// <param name="upgrade"></param>
+    public void ApplyUpgrade(Upgrade upgrade)
+    {
+        upgrades.Add(upgrade);
+        upgrade.OnUpgrade();
     }
 
     private void OnDrawGizmosSelected()

@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
-[RequireComponent(typeof(Rigidbody2D))]
 public abstract class EnemyEntity : Entity
 {
     protected Entity target;
@@ -22,6 +20,8 @@ public abstract class EnemyEntity : Entity
     // Start is called before the first frame update
     protected override void Start()
     {
+        base.Start();
+
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         InvokeRepeating("_Attack", attackSpeed, attackSpeed);
         if (partToRotate == null)

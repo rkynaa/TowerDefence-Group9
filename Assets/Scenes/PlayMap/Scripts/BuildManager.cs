@@ -35,9 +35,8 @@ public class BuildManager : MonoBehaviour
         toBuild = Towers.sampleTower;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void BuildTower()
     {
-        
+
     }
 }
