@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 4861524635213119824}
   - component: {fileID: 4861524635213119830}
   - component: {fileID: 4861524635213119831}
+  - component: {fileID: 5279375340328674697}
   m_Layer: 0
   m_Name: SampleTower
   m_TagString: Untagged
@@ -145,16 +146,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a0ed95428615c740b025892ab4ab934, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
   _maxHealth: 10
   Moveable: 1
   Spawner: 1
   curState: 0
   range: 4
   attackSpeed: 1
-  attackProjectile: {fileID: 2915657437792091857, guid: 70bcb8f8b4ef5a649aec7ff18ed00c0c, type: 3}
+  attackProjectile: {fileID: -7522466113046686158, guid: 70bcb8f8b4ef5a649aec7ff18ed00c0c, type: 3}
   firePoint: {fileID: 1826141318287132238}
   enemyTag: Enemy
   partToRotate: {fileID: 6683675132700892530}
+--- !u!50 &5279375340328674697
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861524635213119826}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &5802253706823942509
 GameObject:
   m_ObjectHideFlags: 0

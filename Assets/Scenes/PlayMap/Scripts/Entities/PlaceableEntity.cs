@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
 public abstract class PlaceableEntity : Entity
 {
     public bool Moveable = true;
@@ -57,7 +56,7 @@ public abstract class PlaceableEntity : Entity
 
     protected void OnMouseDown()
     {
-        if(Moveable)
+        if(Moveable && curState != State.MOVING)
         {
             if(Spawner)
             {
