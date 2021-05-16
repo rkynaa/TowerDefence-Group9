@@ -68,8 +68,10 @@
     <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\TowerEntity.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\Projectile.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\Upgrade.cs" />
-    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\HealthBar.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\HideableUI\HealthBar.cs" />
     <Compile Include="Assets\Scripts\Roman.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\HideableUI\RangeCircle.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\HideableUI.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Art\td_basic_towers\Source.txt" />

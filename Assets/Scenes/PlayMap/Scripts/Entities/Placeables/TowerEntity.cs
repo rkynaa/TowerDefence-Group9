@@ -4,12 +4,26 @@ using UnityEngine;
 
 public abstract class TowerEntity : PlaceableEntity
 {
+    [Header("Tower Entity")]
+
     protected Entity target;
 
     [Header("Attributes")]
 
-    public float range = 4f;
+    public int cost = 50;
+    [SerializeField]
+    private float range = 4f;
+    public float Range 
+    { 
+        get { return range; } 
+        set 
+        {
+            range = value;
+            rangeCircle.SetRange(range);
+        } 
+    }
     public float attackSpeed = 1f;
+
     private float attackCountdown = 0f;
 
     [Header("Upgrades")]
@@ -21,6 +35,7 @@ public abstract class TowerEntity : PlaceableEntity
 
     public Projectile attackProjectile;
     public Transform firePoint;
+    public RangeCircle rangeCircle;
 
     public string enemyTag = "Enemy";
 
@@ -31,6 +46,7 @@ public abstract class TowerEntity : PlaceableEntity
     {
         base.Start();
 
+        rangeCircle.Initialise(this, Range);
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         if (partToRotate == null)
         {
@@ -45,7 +61,7 @@ public abstract class TowerEntity : PlaceableEntity
 
     void UpdateTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag); // Inefficient but easy to implement for the prototype
 
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
@@ -60,7 +76,7 @@ public abstract class TowerEntity : PlaceableEntity
             }
         }
 
-        if(nearestEnemy != null && shortestDistance <= range)
+        if(nearestEnemy != null && shortestDistance <= Range)
         {
             target = nearestEnemy.GetComponent<EnemyEntity>();
         } 
@@ -95,6 +111,22 @@ public abstract class TowerEntity : PlaceableEntity
         }
 
         attackCountdown -= Time.deltaTime;
+    }
+
+    // Possible performance improvements over the current targeting system.
+    public virtual void OnRangeEnter(Collider2D collision)
+    {
+
+    }
+
+    public virtual void OnRangeExit(Collider2D collision)
+    {
+
+    }
+
+    public virtual void OnRangeStay(Collider2D collision)
+    {
+
     }
 
     public virtual void Attack()
@@ -133,9 +165,36 @@ public abstract class TowerEntity : PlaceableEntity
         upgrade.OnUpgrade();
     }
 
+    public void OpenUI()
+    {
+        isUIOpen = true;
+        rangeCircle.Show();
+    }
+
+    public void CloseUI()
+    {
+        isUIOpen = false;
+        rangeCircle.Hide();
+    }
+
+    private bool isUIOpen = false;
+    protected void OnMouseUpAsButton()
+    {
+        if(isUIOpen)
+        {
+            // Close ui
+            CloseUI();
+        }
+        else
+        {
+            // Open ui
+            OpenUI();
+        }
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.gray;
-        Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.DrawWireSphere(transform.position, Range);
     }
 }

@@ -21,7 +21,7 @@ public class SampleTower : TowerEntity
 
     private class UpgradeDamage : Upgrade
     {
-        int[] cost = new int[5] { 50, 60, 70, 90, 150 };
+        readonly int[] cost = new int[5] { 50, 60, 70, 90, 150 };
 
         public override int GetCost()
         {

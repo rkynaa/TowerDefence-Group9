@@ -23,18 +23,13 @@ public abstract class EnemyEntity : Entity
         base.Start();
 
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
-        InvokeRepeating("_Attack", attackSpeed, attackSpeed);
+        InvokeRepeating("CheckAttack", attackSpeed, attackSpeed);
         if (partToRotate == null)
         {
             partToRotate = gameObject.transform;
         }
         target = core;
         GameMaster.EnemiesAlive += 1;
-    }
-
-    float ManhattanDistance(Transform a, Transform b)
-    {
-        return Mathf.Abs(a.position.x - b.position.x) + Mathf.Abs(a.position.y - b.position.y);
     }
 
     void UpdateTarget()
@@ -46,15 +41,11 @@ public abstract class EnemyEntity : Entity
 
         foreach (GameObject t in targets)
         {
-            float quickDistance = ManhattanDistance(transform, t.transform);
-            if (quickDistance < shortestDistance)
+            float distanceToTarget = Vector3.Distance(transform.position, t.transform.position);
+            if (distanceToTarget < shortestDistance)
             {
-                float distanceToTarget = Vector3.Distance(transform.position, t.transform.position);
-                if (distanceToTarget < shortestDistance)
-                {
-                    shortestDistance = distanceToTarget;
-                    nearestTarget = t;
-                }
+                shortestDistance = distanceToTarget;
+                nearestTarget = t;
             }
         }
 
@@ -85,22 +76,17 @@ public abstract class EnemyEntity : Entity
         transform.position = Vector2.MoveTowards(transform.position, target.transform.position, step);
     }
 
-    void _Attack()
+    void CheckAttack()
     {
         if (target == null)
             return;
 
-        float quickDistance = ManhattanDistance(transform, target.transform);
-        if (quickDistance > attackingRange)
+        float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
+        if (distanceToTarget > attackingRange)
         {
-            float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
-            if (distanceToTarget > attackingRange)
-            {
-                return;
-            }
+            return;
         }
 
-        Debug.Log(quickDistance);
         Attack();
     }
 
@@ -117,9 +103,11 @@ public abstract class EnemyEntity : Entity
 
     private void OnDrawGizmosSelected()
     {
+        // Target range in editor
         Gizmos.color = Color.gray;
         Gizmos.DrawWireSphere(transform.position, targetingRange);
 
+        // Attack range in editor
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackingRange);
     }

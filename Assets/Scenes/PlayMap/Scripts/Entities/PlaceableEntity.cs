@@ -54,7 +54,7 @@ public abstract class PlaceableEntity : Entity
         Destroy(gameObject);
     }
 
-    protected void OnMouseDown()
+    protected virtual void OnMouseDown()
     {
         if(Moveable && curState != State.MOVING)
         {
@@ -72,7 +72,7 @@ public abstract class PlaceableEntity : Entity
         }
     }
 
-    protected void OnMouseUp()
+    protected virtual void OnMouseUp()
     {
         if(validLocation)
         {

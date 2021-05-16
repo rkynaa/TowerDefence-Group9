@@ -41,7 +41,9 @@ public abstract class Upgrade
     {
         this.tower = tower; // Save the tower here for use in OnAttack() or OnHit() if required
 
-        //TODO: subtract money here with GetCost() 
+        int cost = GetCost();
+        GameMaster.SpendMoney(cost);
+        tower.cost += cost;
 
         tower.RemoveUpgrade(this); // Remove upgrade to prevent the upgrade from being bought twice
         tower.ApplyUpgrade(this);

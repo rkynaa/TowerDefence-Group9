@@ -5,3 +5,4 @@ UserSettings/
 obj/
 .vs/
 .vsconfig
+*.csproj
