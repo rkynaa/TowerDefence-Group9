@@ -17,26 +17,60 @@ public class BuildManager : MonoBehaviour
         instance = this;
     }
 
-    private PlaceableEntity toBuild;
-    public PlaceableEntity ToBuild
-    {
-        get { return toBuild; }
-    }
+    public PlaceableEntity toBuild { get; private set; }
 
     // Prefabs of all towers
-    public struct Towers
-    {
-        public static TowerEntity sampleTower;
-    }
+    public TowerEntity[] towers;
 
     // Start is called before the first frame update
     void Start()
     {
-        toBuild = Towers.sampleTower;
+        foreach (TowerEntity tower in towers)
+        {
+            // Import tower into shop
+        }
     }
 
-    public void BuildTower()
+    private void Update()
     {
+        if (toBuild != null)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (!toBuild.CancelMove())
+                {
+                    Destroy(toBuild);
+                    toBuild = null;
+                    return;
+                }
+                // else ignore the cancel attempt
+            }
 
+            // 0 = left, 1 = right, 2 = middle
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (toBuild.ValidLocation)
+                {
+                    if (GameMaster.SpendMoney(toBuild.cost))
+                    {
+                        toBuild.Placed();
+                    }
+                    toBuild = null;
+                    return;
+                }
+            }
+
+            Vector3 newPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            newPos.z = 0;
+            toBuild.transform.position = newPos;
+        }
+    }
+
+    public void BuildTower(TowerEntity tower)
+    {
+        if(GameMaster.HasMoney(tower.cost))
+        {
+            toBuild = tower;
+        }
     }
 }

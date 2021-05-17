@@ -7,8 +7,8 @@ public abstract class Entity : MonoBehaviour
 {
     [Header("Entity")]
     public HealthBar healthBar;
-    
-    private float _health = 10;
+
+    private float _health;
     float Health { 
         get { return _health; } 
         set 
@@ -44,7 +44,7 @@ public abstract class Entity : MonoBehaviour
 
     protected virtual void Start()
     {
-        Health = _maxHealth;
+        Health = MaxHealth;
         if(healthBar == null)
         {
             healthBar = GetComponentInChildren<HealthBar>();

@@ -11,13 +11,14 @@ public class CoreEntity : PlaceableEntity
         EnemyEntity.core = this;
     }
 
-    protected override void CancelMove()
+    public override bool CancelMove()
     {
-        return;
+        return true;
     }
 
-    protected override void Placed()
+    public override void Placed()
     {
+        base.Placed();
         // Activate
     }
 

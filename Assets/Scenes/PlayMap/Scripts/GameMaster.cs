@@ -13,6 +13,15 @@ public class GameMaster : MonoBehaviour
         return money;
     }
 
+    public static bool HasMoney(int value)
+    {
+        if (money - value < 0)
+        {
+            return false;
+        }
+        return true;
+    }
+
     public static bool SpendMoney(int value)
     {
         if(money - value < 0)

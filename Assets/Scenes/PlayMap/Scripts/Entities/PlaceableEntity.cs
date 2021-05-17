@@ -4,6 +4,9 @@ using UnityEngine;
 
 public abstract class PlaceableEntity : Entity
 {
+    [Header("PlaceableEntity")]
+    public int cost = 0;
+
     public bool Moveable = true;
     public bool Spawner = true;
 
@@ -16,7 +19,8 @@ public abstract class PlaceableEntity : Entity
 
     public State curState = State.DISABLED;
 
-    private bool validLocation = true;
+    private int collidedCount = 0;
+    public bool ValidLocation { get { return collidedCount <= 0; } }
 
     private Color[] startColor;
 
@@ -49,9 +53,14 @@ public abstract class PlaceableEntity : Entity
         }
     }
 
-    protected virtual void CancelMove()
+    /// <summary>
+    /// When a move is canceled a tower can interupt the cancel if required.
+    /// Inturupting a cancel should occur only if the tower is a required tower such as the core
+    /// </summary>
+    /// <returns>Whether to interupt</returns>
+    public virtual bool CancelMove()
     {
-        Destroy(gameObject);
+        return false;
     }
 
     protected virtual void OnMouseDown()
@@ -74,22 +83,27 @@ public abstract class PlaceableEntity : Entity
 
     protected virtual void OnMouseUp()
     {
-        if(validLocation)
+        if(ValidLocation)
         {
             Moveable = false;
-            Spawner = false;
+            // Spawner = false;
             curState = State.ACTIVE;
             Placed();
         }
     }
 
-    protected abstract void Placed();
+    public virtual void Placed()
+    {
+        Moveable = false;
+        // Spawner = false;
+        curState = State.ACTIVE;
+    }
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if(curState == State.MOVING)
+        collidedCount++;
+        if (curState == State.MOVING)
         {
-            validLocation = false;
             foreach (SpriteRenderer sprite in GetComponentsInChildren<SpriteRenderer>())
             {
                 sprite.color = Color.red;
@@ -99,9 +113,9 @@ public abstract class PlaceableEntity : Entity
 
     protected virtual void OnCollisionExit2D(Collision2D collision)
     {
+        collidedCount--;
         if (curState == State.MOVING)
         {
-            validLocation = true;
             SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
             for (int i = 0; i < spriteRenderers.Length; i++)
             {

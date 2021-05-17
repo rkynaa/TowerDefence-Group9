@@ -13,6 +13,7 @@ public class SampleTower : TowerEntity
         AddUpgrade(new UpgradeDamage());
     }
 
+    // Change this if you need multiple projectiles or other.
     public override void Attack()
     {
         base.Attack();
@@ -22,6 +23,11 @@ public class SampleTower : TowerEntity
     private class UpgradeDamage : Upgrade
     {
         readonly int[] cost = new int[5] { 50, 60, 70, 90, 150 };
+
+        public UpgradeDamage()
+        {
+            maxLevel = cost.Length;
+        }
 
         public override int GetCost()
         {

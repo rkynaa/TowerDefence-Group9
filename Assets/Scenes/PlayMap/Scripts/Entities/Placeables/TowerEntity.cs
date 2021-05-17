@@ -10,7 +10,6 @@ public abstract class TowerEntity : PlaceableEntity
 
     [Header("Attributes")]
 
-    public int cost = 50;
     [SerializeField]
     private float range = 4f;
     public float Range 
@@ -54,8 +53,9 @@ public abstract class TowerEntity : PlaceableEntity
         }
     }
 
-    protected override void Placed()
+    public override void Placed()
     {
+        base.Placed();
         tag = "Tower";
     }
 
