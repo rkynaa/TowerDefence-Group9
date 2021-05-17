@@ -8,6 +8,9 @@ public abstract class Entity : MonoBehaviour
     [Header("Entity")]
     public HealthBar healthBar;
 
+    public AudioClip deathSound;
+    public AudioClip damageSound;
+
     private float _health;
     float Health { 
         get { return _health; } 
@@ -37,6 +40,10 @@ public abstract class Entity : MonoBehaviour
             _isDead = value;
             if (_isDead)
             {
+                if(deathSound != null)
+                {
+                    AudioSource.PlayClipAtPoint(deathSound, new Vector2(0, 0));
+                }
                 Destroy(gameObject);
             }
         }
@@ -60,6 +67,11 @@ public abstract class Entity : MonoBehaviour
     {
         Health -= damage;
         healthBar.Value = Health;
+
+        if (damageSound != null && damage > 0)
+        {
+            AudioSource.PlayClipAtPoint(damageSound, new Vector2(0, 0));
+        }
     }
 
     /// <summary>

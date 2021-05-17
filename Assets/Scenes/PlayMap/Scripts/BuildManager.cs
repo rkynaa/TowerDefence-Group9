@@ -28,6 +28,7 @@ public class BuildManager : MonoBehaviour
         foreach (TowerEntity tower in towers)
         {
             // Import tower into shop
+            // Create squares
         }
     }
 

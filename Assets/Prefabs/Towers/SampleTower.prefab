@@ -148,11 +148,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 0}
-  _maxHealth: 10
+  deathSound: {fileID: 0}
+  damageSound: {fileID: 8300000, guid: b5d4b936ac8104f46b893dd341d1997d, type: 3}
+  _maxHealth: 40
+  cost: 50
   Moveable: 1
   Spawner: 1
   curState: 0
-  cost: 50
   range: 4
   attackSpeed: 1
   attackProjectile: {fileID: -7522466113046686158, guid: 70bcb8f8b4ef5a649aec7ff18ed00c0c, type: 3}
@@ -507,6 +509,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7698732812879999991, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8093407582375623911, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

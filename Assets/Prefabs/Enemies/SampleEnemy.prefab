@@ -46,7 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 649b01e592b45da4096161339e1776c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 7091951741752358162}
+  deathSound: {fileID: 8300000, guid: 796b14f56e653a74e949a23639fd6674, type: 3}
+  damageSound: {fileID: 8300000, guid: 991b841fb9a0a9a488ad1c5ab36d2e79, type: 3}
   _maxHealth: 10
   targetingRange: 4
   targetTag: Tower
@@ -216,3 +218,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7698732812879999991, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
   m_PrefabInstance: {fileID: 879637874936754293}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7091951741752358162 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7952993503175837031, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
+  m_PrefabInstance: {fileID: 879637874936754293}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d8fc1582565124fbbf41ce9ff2678e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
