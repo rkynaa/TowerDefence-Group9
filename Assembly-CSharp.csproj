@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\Roman.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\HideableUI\RangeCircle.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\HideableUI.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\HeroEntity.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Art\Sounds\Source.txt" />

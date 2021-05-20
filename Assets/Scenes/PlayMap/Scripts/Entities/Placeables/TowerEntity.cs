@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -129,11 +130,20 @@ public abstract class TowerEntity : PlaceableEntity
 
     }
 
+    public override void OnHit(Entity target, float damage)
+    {
+        EnemyEntity enemy = (EnemyEntity)target; // safe
+
+        foreach (Upgrade upgrade in upgrades)
+        {
+            upgrade.OnHit(enemy); 
+        }
+    }
+
     public virtual void Attack()
     {
         GameObject projectileGO = Instantiate(attackProjectile.gameObject, firePoint.position, partToRotate.rotation);
         Projectile proj = projectileGO.GetComponent<Projectile>();
-        proj.callbackUpgrades = upgrades;
         proj.Fire(target.transform);
     }
 

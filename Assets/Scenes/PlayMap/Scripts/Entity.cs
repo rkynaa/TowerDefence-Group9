@@ -82,4 +82,10 @@ public abstract class Entity : MonoBehaviour
     {
         return true; 
     }
+
+    /// <summary>
+    /// Called whenever the entity successfully damages a target
+    /// </summary>
+    /// <param name="damage">The amount of damage delt</param>
+    public virtual void OnHit(Entity target, float damage) { }
 }

@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour
     /// These upgrades get their OnHit() methods called
     /// </summary>
     [HideInInspector]
-    public HashSet<Upgrade> callbackUpgrades = null; 
+    public Entity source = null; 
 
     protected Transform target;
     protected Vector2 direction;
@@ -56,13 +56,11 @@ public class Projectile : MonoBehaviour
             return;
         }
 
-        if(callbackUpgrades != null)
+        if(source != null)
         {
-            foreach (Upgrade upgrade in callbackUpgrades)
-            {
-                upgrade.OnHit(enemy);
-            }
+            source.OnHit(enemy, damage);
         }
+        
         HitTarget(enemy);
     }
 
