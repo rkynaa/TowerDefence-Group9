@@ -29,7 +29,7 @@ public class SampleTower : TowerEntity
             maxLevel = cost.Length;
         }
 
-        public override int GetCost()
+        protected override int CalcCost()
         {
             return cost[level];
         }

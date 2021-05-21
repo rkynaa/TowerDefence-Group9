@@ -76,13 +76,17 @@ public class RoundSpawner : MonoBehaviour
             }
         }
 
-        if (roundCountdown <= 0)
+        // TODO: swap this out with a next round button
+        if(state == SpawnState.ENDED)
         {
-            state = SpawnState.STARTING;
-        }
-        else
-        {
-            roundCountdown -= Time.deltaTime;
+            if (roundCountdown <= 0)
+            {
+                state = SpawnState.STARTING;
+            }
+            else
+            {
+                roundCountdown -= Time.deltaTime;
+            }
         }
 
         if (state == SpawnState.STARTING)
@@ -99,6 +103,12 @@ public class RoundSpawner : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Spawns all the enemies in a round
+    /// Must be put into a StartCoroutine() call
+    /// </summary>
+    /// <param name="_round">The round ehich contains enemies and timings</param>
+    /// <returns></returns>
     IEnumerator SpawnRound(Round _round)
     {
         state = SpawnState.SPAWNING;
@@ -126,11 +136,19 @@ public class RoundSpawner : MonoBehaviour
         yield break;
     }
 
+    /// <summary>
+    /// Checks if any enemies are alive on the map
+    /// </summary>
+    /// <returns>True if enemies > 0</returns>
     bool IsEnemyAlive()
     {
         return GameMaster.EnemiesAlive > 0;
     }
 
+    /// <summary>
+    /// Spawns an enemy at a random spawn point
+    /// </summary>
+    /// <param name="_enemy">The enemy prefab to spawn</param>
     void SpawnEnemy(EnemyEntity _enemy)
     {
         Transform _spawn = spawnPoints[Random.Range(0, spawnPoints.Length)];

@@ -7,6 +7,7 @@ public abstract class TowerEntity : PlaceableEntity
 {
     [Header("Tower Entity")]
 
+    public new string name;
     protected Entity target;
 
     [Header("Attributes")]

@@ -31,7 +31,12 @@ public abstract class Upgrade
     /// level = 0 when upgrading from 0 -> 1.
     /// </summary>
     /// <returns>price of upgrade</returns>
-    public abstract int GetCost();
+    protected abstract int CalcCost();
+
+    public int GetCost()
+    {
+        return (int)(CalcCost() * GameMaster.costDifficulty);
+    }
 
     /// <summary>
     /// Called before a tower is upgraded
@@ -41,7 +46,7 @@ public abstract class Upgrade
     {
         this.tower = tower; // Save the tower here for use in OnAttack() or OnHit() if required
 
-        int cost = GetCost();
+        int cost = CalcCost();
         GameMaster.SpendMoney(cost);
         tower.cost += cost;
 

@@ -155,6 +155,7 @@ MonoBehaviour:
   Moveable: 1
   Spawner: 1
   curState: 0
+  name: Sample Tower
   range: 4
   attackSpeed: 1
   attackProjectile: {fileID: -7522466113046686158, guid: 70bcb8f8b4ef5a649aec7ff18ed00c0c, type: 3}

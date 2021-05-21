@@ -21,6 +21,7 @@ public abstract class EnemyEntity : Entity
     protected override void Start()
     {
         base.Start();
+        attackSpeed = (float) (attackSpeed * 1 / GameMaster.enemyDifficulty);
 
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         InvokeRepeating("CheckAttack", attackSpeed, attackSpeed);

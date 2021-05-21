@@ -76,7 +76,7 @@ public abstract class HeroEntity : TowerEntity
 
     public bool CanLevelUp()
     {
-        if((level + 1) % 10 != 0)
+        if((level + 1) % 10 != 0 && level < maxLevel)
         {
             return true;
         }
