@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class Entity : MonoBehaviour
 {
-    
-    private float _health = 10;
+    [Header("Entity")]
+    public HealthBar healthBar;
+
+    public AudioClip deathSound;
+    public AudioClip damageSound;
+
+    private float _health;
     float Health { 
         get { return _health; } 
         set 
@@ -34,6 +40,10 @@ public abstract class Entity : MonoBehaviour
             _isDead = value;
             if (_isDead)
             {
+                if(deathSound != null)
+                {
+                    AudioSource.PlayClipAtPoint(deathSound, new Vector2(0, 0));
+                }
                 Destroy(gameObject);
             }
         }
@@ -41,7 +51,12 @@ public abstract class Entity : MonoBehaviour
 
     protected virtual void Start()
     {
-        Health = _maxHealth;
+        Health = MaxHealth;
+        if(healthBar == null)
+        {
+            healthBar = GetComponentInChildren<HealthBar>();
+        }
+        healthBar.maxHealth = MaxHealth;
     }
 
     /// <summary>
@@ -51,6 +66,12 @@ public abstract class Entity : MonoBehaviour
     public void DamageEntity(float damage)
     {
         Health -= damage;
+        healthBar.Value = Health;
+
+        if (damageSound != null && damage > 0)
+        {
+            AudioSource.PlayClipAtPoint(damageSound, new Vector2(0, 0));
+        }
     }
 
     /// <summary>
@@ -61,4 +82,10 @@ public abstract class Entity : MonoBehaviour
     {
         return true; 
     }
+
+    /// <summary>
+    /// Called whenever the entity successfully damages a target
+    /// </summary>
+    /// <param name="damage">The amount of damage delt</param>
+    public virtual void OnHit(Entity target, float damage) { }
 }

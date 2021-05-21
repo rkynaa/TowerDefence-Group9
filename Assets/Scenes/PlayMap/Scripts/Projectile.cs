@@ -5,6 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Projectile : MonoBehaviour
 {
+    /// <summary>
+    /// These upgrades get their OnHit() methods called
+    /// </summary>
+    [HideInInspector]
+    public Entity source = null; 
+
     protected Transform target;
     protected Vector2 direction;
 
@@ -42,7 +48,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        EnemyEntity enemy = collision.gameObject.GetComponent<EnemyEntity>();
+        EnemyEntity enemy = collision.gameObject.GetComponentInParent<EnemyEntity>();
 
         if (enemy == null)
         {
@@ -50,6 +56,11 @@ public class Projectile : MonoBehaviour
             return;
         }
 
+        if(source != null)
+        {
+            source.OnHit(enemy, damage);
+        }
+        
         HitTarget(enemy);
     }
 

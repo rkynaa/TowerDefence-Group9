@@ -1,0 +1,5 @@
+SourceWebsite - OriginalFileName - FileName
+https://opengameart.org/content/death-sounds-0 - 3.ogg - deathSound.ogg
+https://opengameart.org/content/impact - qubodupImpactStone.ogg
+https://freesound.org/people/F.M.Audio/sounds/570525/ - 570525__f-m-audio__clicking-large-stones-together-2.wav
+https://freesound.org/people/LittleRobotSoundFactory/sounds/270467/ - 270467__littlerobotsoundfactory__jingle-lose-00.wav

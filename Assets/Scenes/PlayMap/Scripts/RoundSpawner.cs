@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoundSpawner : MonoBehaviour
 {
-    public enum SpawnState { SPAWNING, WAITING, ENDED }
+    private enum SpawnState { STARTING, SPAWNING, WAITING, ENDED }
 
     [System.Serializable]
     public class Round
@@ -51,6 +51,14 @@ public class RoundSpawner : MonoBehaviour
         roundCountdown = timeBetweenRounds;
     }
 
+    public void StartRound()
+    {
+        if(state == SpawnState.ENDED)
+        {
+            state = SpawnState.STARTING;
+        }
+    }
+
     private void Update()
     {
         if (state == SpawnState.WAITING)
@@ -60,6 +68,7 @@ public class RoundSpawner : MonoBehaviour
             {
                 // Finish round
                 state = SpawnState.ENDED;
+                // TODO: Push round ended state to start round button here
             } 
             else
             {
@@ -69,21 +78,25 @@ public class RoundSpawner : MonoBehaviour
 
         if (roundCountdown <= 0)
         {
-            if (state != SpawnState.SPAWNING)
-            {
-                Debug.Log("Spawning round number " + nextRound);
-                StartCoroutine(SpawnRound(rounds[nextRound]));
-
-                if (nextRound < rounds.Length - 1)
-                {
-                    nextRound += 1;
-                }
-            }
+            state = SpawnState.STARTING;
         }
         else
         {
             roundCountdown -= Time.deltaTime;
         }
+
+        if (state == SpawnState.STARTING)
+        {
+            Debug.Log("Spawning round number " + nextRound);
+            StartCoroutine(SpawnRound(rounds[nextRound]));
+
+            if (nextRound < rounds.Length - 1)
+            {
+                nextRound += 1;
+                // Update Round Counter Here
+            }
+        }
+
     }
 
     IEnumerator SpawnRound(Round _round)
