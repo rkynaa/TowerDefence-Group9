@@ -14,14 +14,14 @@ public abstract class TowerEntity : PlaceableEntity
 
     [SerializeField]
     private float range = 4f;
-    public float Range 
-    { 
-        get { return range; } 
-        set 
+    public float Range
+    {
+        get { return range; }
+        set
         {
             range = value;
             rangeCircle.SetRange(range);
-        } 
+        }
     }
     public float attackSpeed = 1f;
 
@@ -37,6 +37,8 @@ public abstract class TowerEntity : PlaceableEntity
     public Projectile attackProjectile;
     public Transform firePoint;
     public RangeCircle rangeCircle;
+
+    public ListUpgradesAvail displayUpgList;
 
     public string enemyTag = "Enemy";
 
@@ -71,17 +73,17 @@ public abstract class TowerEntity : PlaceableEntity
         foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if(distanceToEnemy < shortestDistance)
+            if (distanceToEnemy < shortestDistance)
             {
                 shortestDistance = distanceToEnemy;
                 nearestEnemy = enemy;
             }
         }
 
-        if(nearestEnemy != null && shortestDistance <= Range)
+        if (nearestEnemy != null && shortestDistance <= Range)
         {
             target = nearestEnemy.GetComponent<EnemyEntity>();
-        } 
+        }
         else
         {
             target = null;
@@ -108,7 +110,7 @@ public abstract class TowerEntity : PlaceableEntity
                 {
                     upgrade.OnAttack();
                 }
-                Attack();
+            Attack();
             attackCountdown = 1 / attackSpeed;
         }
 
@@ -137,7 +139,7 @@ public abstract class TowerEntity : PlaceableEntity
 
         foreach (Upgrade upgrade in upgrades)
         {
-            upgrade.OnHit(enemy); 
+            upgrade.OnHit(enemy);
         }
     }
 
@@ -180,6 +182,7 @@ public abstract class TowerEntity : PlaceableEntity
     {
         isUIOpen = true;
         rangeCircle.Show();
+
     }
 
     public void CloseUI()
@@ -191,7 +194,7 @@ public abstract class TowerEntity : PlaceableEntity
     private bool isUIOpen = false;
     protected void OnMouseUpAsButton()
     {
-        if(isUIOpen)
+        if (isUIOpen)
         {
             // Close ui
             CloseUI();
