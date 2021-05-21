@@ -12,7 +12,6 @@ public class ListUpgradesAvail : HideableUI
         main_tower = tower;
     }
 
-    public void printList();
     public override void Hide()
     {
 

@@ -18,6 +18,8 @@ public class GameMaster : MonoBehaviour
 
     private static int money = 0;
 
+    public static float volume = 1;
+
     public static int GetMoney()
     {
         return money;

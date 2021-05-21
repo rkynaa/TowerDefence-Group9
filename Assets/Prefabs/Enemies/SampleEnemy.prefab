@@ -52,7 +52,7 @@ MonoBehaviour:
   _maxHealth: 10
   targetingRange: 4
   targetTag: Tower
-  attackingRange: 1
+  attackingRange: 1.3
   attackSpeed: 1
   speed: 1
   partToRotate: {fileID: 2432161100144692872}

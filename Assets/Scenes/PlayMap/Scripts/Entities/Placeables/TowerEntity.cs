@@ -10,6 +10,11 @@ public abstract class TowerEntity : PlaceableEntity
     public new string name;
     protected Entity target;
 
+    /// <summary>
+    /// If this tower can attack and target enemies
+    /// </summary>
+    public bool canAttack = true;
+
     [Header("Attributes")]
 
     [SerializeField]
@@ -50,7 +55,12 @@ public abstract class TowerEntity : PlaceableEntity
         base.Start();
 
         rangeCircle.Initialise(this, Range);
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+
+        if (canAttack)
+        {
+            InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        }
+
         if (partToRotate == null)
         {
             partToRotate = gameObject.transform;
@@ -65,6 +75,11 @@ public abstract class TowerEntity : PlaceableEntity
 
     void UpdateTarget()
     {
+        if (!canAttack)
+        {
+            return;
+        }
+
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag); // Inefficient but easy to implement for the prototype
 
         float shortestDistance = Mathf.Infinity;
@@ -95,7 +110,7 @@ public abstract class TowerEntity : PlaceableEntity
     {
         base.Update();
 
-        if (target == null || curState != State.ACTIVE)
+        if (!canAttack || target == null || curState != State.ACTIVE)
             return;
 
         Vector3 dir = target.transform.position - transform.position;

@@ -70,7 +70,7 @@ public abstract class Entity : MonoBehaviour
 
         if (damageSound != null && damage > 0)
         {
-            AudioSource.PlayClipAtPoint(damageSound, new Vector2(0, 0));
+            AudioSource.PlayClipAtPoint(damageSound, new Vector2(0, 0), GameMaster.volume);
         }
     }
 
