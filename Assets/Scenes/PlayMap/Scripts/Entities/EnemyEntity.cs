@@ -15,6 +15,8 @@ public abstract class EnemyEntity : Entity
 
     public float speed = 1f;
 
+    public int defeatReward = 1;
+
     public Transform partToRotate = null;
 
     // Start is called before the first frame update
@@ -70,7 +72,7 @@ public abstract class EnemyEntity : Entity
 
         Vector3 dir = target.transform.position - transform.position;
 
-        Quaternion rotation = Quaternion.LookRotation(dir, transform.TransformDirection(Vector3.up));
+        Quaternion rotation = Quaternion.LookRotation(dir, transform.TransformDirection(Vector3.back));
         partToRotate.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
 
         // move towards the target
@@ -99,6 +101,7 @@ public abstract class EnemyEntity : Entity
     public override bool OnDeath()
     {
         GameMaster.EnemiesAlive -= 1;
+        GameMaster.GainMoney(defeatReward);
         return base.OnDeath();
     }
 

@@ -67,6 +67,30 @@ public abstract class TowerEntity : PlaceableEntity
         }
     }
 
+    public virtual int GetSellPrice()
+    {
+        return (int)(cost * 0.8 * (Health / MaxHealth));
+    }
+
+    public void SellTower()
+    {
+        Destroy(gameObject);
+        GameMaster.GainMoney(GetSellPrice());
+    }
+
+    public virtual int GetRepairPrice()
+    {
+        return (int)(cost * 0.35 * GameMaster.costDifficulty);
+    }
+
+    public void RepairTower()
+    {
+        if (GameMaster.SpendMoney(GetRepairPrice()))
+        {
+            Health = MaxHealth;
+        }
+    }
+
     public override void Placed()
     {
         base.Placed();

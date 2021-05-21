@@ -16,7 +16,7 @@ public class GameMaster : MonoBehaviour
 
     public static int EnemiesAlive = 0;
 
-    private static int money = 0;
+    private static int money = 1000;
 
     public static float volume = 1;
 
@@ -41,7 +41,7 @@ public class GameMaster : MonoBehaviour
 
     public static bool SpendMoney(int value)
     {
-        if(money - value < 0)
+        if(money - value < 0 || value < 0)
         {
             return false;
         }
@@ -52,5 +52,10 @@ public class GameMaster : MonoBehaviour
     public static bool SpendMoney(double value)
     {
         return SpendMoney((int) value);
+    }
+
+    public static void GainMoney(int value)
+    {
+        money += value;
     }
 }

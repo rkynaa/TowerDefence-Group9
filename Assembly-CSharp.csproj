@@ -81,6 +81,10 @@
     <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\Towers\WizardTower.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\Towers\MachineGunTower.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\Towers\GoldTower.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Enemies\Zombie.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Enemies\Gargoyle.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Enemies\Demon.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Enemies\Dragon.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

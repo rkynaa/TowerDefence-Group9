@@ -12,7 +12,7 @@ public abstract class Entity : MonoBehaviour
     public AudioClip damageSound;
 
     private float _health;
-    float Health { 
+    public float Health { 
         get { return _health; } 
         set 
         {

@@ -44,6 +44,8 @@ public class RoundSpawner : MonoBehaviour
     public float timeBetweenRounds = 5f;
     private float roundCountdown;
 
+    private float minDelay = 0.01f;
+
     private SpawnState state = SpawnState.ENDED;
 
     private void Start()
@@ -120,14 +122,25 @@ public class RoundSpawner : MonoBehaviour
             for (int j = 0; j < rs.count; j++)
             {
                 SpawnEnemy(rs.enemy);
-                if(rs.delay > 0 && j != rs.count - 1)
+                if(j != rs.count - 1)
                 {
-                    yield return new WaitForSeconds(rs.delay);
+                    if(rs.delay > 0)
+                    {
+                        yield return new WaitForSeconds(rs.delay);
+                    }
+                    else
+                    {
+                        yield return new WaitForSeconds(minDelay);
+                    }
                 }
             }
             if (rs.delayAfter > 0)
             {
                 yield return new WaitForSeconds(rs.delayAfter);
+            }
+            else
+            {
+                yield return new WaitForSeconds(minDelay);
             }
         }
 
