@@ -43,7 +43,10 @@ public abstract class PlaceableEntity : Entity
         {
             if(Input.GetKeyDown(KeyCode.Escape))
             {
-                CancelMove();
+                if (!CancelMove())
+                {
+                    Destroy(gameObject);
+                }
                 return;
             }
 
@@ -83,7 +86,7 @@ public abstract class PlaceableEntity : Entity
 
     protected virtual void OnMouseUp()
     {
-        if(ValidLocation)
+        if(ValidLocation && curState == State.MOVING)
         {
             Moveable = false;
             // Spawner = false;

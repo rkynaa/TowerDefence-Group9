@@ -10,18 +10,23 @@ public abstract class TowerEntity : PlaceableEntity
     public new string name;
     protected Entity target;
 
+    /// <summary>
+    /// If this tower can attack and target enemies
+    /// </summary>
+    public bool canAttack = true;
+
     [Header("Attributes")]
 
     [SerializeField]
     private float range = 4f;
-    public float Range 
-    { 
-        get { return range; } 
-        set 
+    public float Range
+    {
+        get { return range; }
+        set
         {
             range = value;
             rangeCircle.SetRange(range);
-        } 
+        }
     }
     public float attackSpeed = 1f;
 
@@ -38,6 +43,8 @@ public abstract class TowerEntity : PlaceableEntity
     public Transform firePoint;
     public RangeCircle rangeCircle;
 
+    public ListUpgradesAvail displayUpgList;
+
     public string enemyTag = "Enemy";
 
     public Transform partToRotate = null;
@@ -48,10 +55,55 @@ public abstract class TowerEntity : PlaceableEntity
         base.Start();
 
         rangeCircle.Initialise(this, Range);
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+
+        if (canAttack)
+        {
+            InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        }
+
         if (partToRotate == null)
         {
             partToRotate = gameObject.transform;
+        }
+    }
+
+    public override bool OnDeath()
+    {
+        GameMaster.instance.stats.towersLost += 1;
+        return true;
+    }
+
+    public override bool OnDamage(float damage)
+    {
+        GameMaster.instance.stats.damageTaken += damage;
+        return base.OnDamage(damage);
+    }
+
+    public virtual int GetSellPrice()
+    {
+        return (int)(cost * 0.8 * (Health / MaxHealth));
+    }
+
+    public void SellTower()
+    {
+        Destroy(gameObject);
+        GameMaster.instance.GainMoney(GetSellPrice());
+    }
+
+    public virtual int GetRepairPrice()
+    {
+        return (int)(cost * 0.35 * GameMaster.instance.costDifficulty);
+    }
+
+    public void RepairTower()
+    {
+        int repairPrice = GetRepairPrice();
+        if (GameMaster.instance.SpendMoney(repairPrice))
+        {
+            GameMaster.instance.stats.repairCount += 1;
+            GameMaster.instance.stats.repairCost += repairPrice;
+            GameMaster.instance.stats.repairAmount += MaxHealth - Health;
+            Health = MaxHealth;
         }
     }
 
@@ -63,28 +115,27 @@ public abstract class TowerEntity : PlaceableEntity
 
     void UpdateTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag); // Inefficient but easy to implement for the prototype
+        if (!canAttack)
+        {
+            return;
+        }
 
         float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
+        EnemyEntity nearestEnemy = null;
 
-        foreach (GameObject enemy in enemies)
+        foreach (EnemyEntity enemy in GameMaster.instance.enemiesAlive)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if(distanceToEnemy < shortestDistance)
+            if (distanceToEnemy < shortestDistance)
             {
                 shortestDistance = distanceToEnemy;
                 nearestEnemy = enemy;
             }
         }
 
-        if(nearestEnemy != null && shortestDistance <= Range)
+        if (nearestEnemy != null && shortestDistance <= Range)
         {
-            target = nearestEnemy.GetComponent<EnemyEntity>();
-        } 
-        else
-        {
-            target = null;
+            target = nearestEnemy;
         }
     }
 
@@ -93,7 +144,7 @@ public abstract class TowerEntity : PlaceableEntity
     {
         base.Update();
 
-        if (target == null || curState != State.ACTIVE)
+        if (!canAttack || target == null || curState != State.ACTIVE)
             return;
 
         Vector3 dir = target.transform.position - transform.position;
@@ -103,12 +154,11 @@ public abstract class TowerEntity : PlaceableEntity
 
         if (attackCountdown <= 0f)
         {
-            if (target != null)
-                foreach (Upgrade upgrade in upgrades)
-                {
-                    upgrade.OnAttack();
-                }
-                Attack();
+            foreach (Upgrade upgrade in upgrades)
+            {
+                upgrade.OnAttack();
+            }
+            Attack();
             attackCountdown = 1 / attackSpeed;
         }
 
@@ -135,9 +185,11 @@ public abstract class TowerEntity : PlaceableEntity
     {
         EnemyEntity enemy = (EnemyEntity)target; // safe
 
+        GameMaster.instance.stats.damageDealt += damage;
+
         foreach (Upgrade upgrade in upgrades)
         {
-            upgrade.OnHit(enemy); 
+            upgrade.OnHit(enemy);
         }
     }
 
@@ -180,6 +232,7 @@ public abstract class TowerEntity : PlaceableEntity
     {
         isUIOpen = true;
         rangeCircle.Show();
+
     }
 
     public void CloseUI()
@@ -191,7 +244,7 @@ public abstract class TowerEntity : PlaceableEntity
     private bool isUIOpen = false;
     protected void OnMouseUpAsButton()
     {
-        if(isUIOpen)
+        if (isUIOpen || curState != State.ACTIVE)
         {
             // Close ui
             CloseUI();

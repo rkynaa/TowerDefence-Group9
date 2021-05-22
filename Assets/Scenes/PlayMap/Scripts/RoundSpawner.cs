@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoundSpawner : MonoBehaviour
 {
-    private enum SpawnState { STARTING, SPAWNING, WAITING, ENDED }
+    public enum SpawnState { STARTING, SPAWNING, WAITING, ENDED }
 
     [System.Serializable]
     public class Round
@@ -36,19 +36,50 @@ public class RoundSpawner : MonoBehaviour
         public float delayAfter;
     }
 
+    public FreeplayRound freeplayTemplate;
+
+    [System.Serializable]
+    public class FreeplayRound : Round
+    {
+        public int divisor = 1;
+        private double[] multipliers;
+
+        public void CalcRatios()
+        {
+            multipliers = new double[enemies.Length];
+
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                multipliers[i] = (double) enemies[i].count / divisor;
+            }
+        }
+
+        public void Populate(int round)
+        {
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                enemies[i].count = (int) (multipliers[i] * round);
+            }
+        }
+    }
+
     public Round[] rounds;
     private int nextRound = 0;
 
     public Transform[] spawnPoints;
 
-    public float timeBetweenRounds = 5f;
+    private float timeBetweenRounds = 1f;
     private float roundCountdown;
 
-    private SpawnState state = SpawnState.ENDED;
+    private const float minDelay = 0.01f;
+
+    [HideInInspector]
+    public SpawnState state = SpawnState.ENDED;
 
     private void Start()
     {
         roundCountdown = timeBetweenRounds;
+        freeplayTemplate.CalcRatios();
     }
 
     public void StartRound()
@@ -77,7 +108,7 @@ public class RoundSpawner : MonoBehaviour
         }
 
         // TODO: swap this out with a next round button
-        if(state == SpawnState.ENDED)
+        if(state == SpawnState.ENDED && GameMaster.autoNextRound)
         {
             if (roundCountdown <= 0)
             {
@@ -92,13 +123,22 @@ public class RoundSpawner : MonoBehaviour
         if (state == SpawnState.STARTING)
         {
             Debug.Log("Spawning round number " + nextRound);
-            StartCoroutine(SpawnRound(rounds[nextRound]));
+            Round round;
 
-            if (nextRound < rounds.Length - 1)
+            if (nextRound < rounds.Length)
             {
-                nextRound += 1;
-                // Update Round Counter Here
+                round = rounds[nextRound];
             }
+            else
+            {
+                freeplayTemplate.Populate(nextRound);
+                round = freeplayTemplate;
+                GameMaster.instance.enemyDifficulty += 0.2;
+            }
+
+            StartCoroutine(SpawnRound(round));
+
+            nextRound += 1;
         }
 
     }
@@ -120,14 +160,25 @@ public class RoundSpawner : MonoBehaviour
             for (int j = 0; j < rs.count; j++)
             {
                 SpawnEnemy(rs.enemy);
-                if(rs.delay > 0 && j != rs.count - 1)
+                if(j != rs.count - 1)
                 {
-                    yield return new WaitForSeconds(rs.delay);
+                    if(rs.delay > 0)
+                    {
+                        yield return new WaitForSeconds(rs.delay);
+                    }
+                    else
+                    {
+                        yield return new WaitForSeconds(minDelay);
+                    }
                 }
             }
             if (rs.delayAfter > 0)
             {
                 yield return new WaitForSeconds(rs.delayAfter);
+            }
+            else
+            {
+                yield return new WaitForSeconds(minDelay);
             }
         }
 
@@ -142,7 +193,7 @@ public class RoundSpawner : MonoBehaviour
     /// <returns>True if enemies > 0</returns>
     bool IsEnemyAlive()
     {
-        return GameMaster.EnemiesAlive > 0;
+        return GameMaster.instance.enemiesAlive.Count > 0;
     }
 
     /// <summary>

@@ -52,8 +52,11 @@ public class BuildManager : MonoBehaviour
             {
                 if (toBuild.ValidLocation)
                 {
-                    if (GameMaster.SpendMoney(toBuild.cost * GameMaster.costDifficulty))
+                    int cost = (int)(toBuild.cost * GameMaster.instance.costDifficulty);
+                    if (GameMaster.instance.SpendMoney(cost))
                     {
+                        GameMaster.instance.stats.towersCost += cost;
+                        GameMaster.instance.stats.towersPlaced += 1;
                         toBuild.Placed();
                     }
                     toBuild = null;
@@ -73,7 +76,7 @@ public class BuildManager : MonoBehaviour
     /// <param name="tower">The tower to build</param>
     public void BuildTower(TowerEntity tower)
     {
-        if(GameMaster.HasMoney(tower.cost * GameMaster.costDifficulty))
+        if(GameMaster.instance.HasMoney(tower.cost * GameMaster.instance.costDifficulty))
         {
             toBuild = tower;
         }

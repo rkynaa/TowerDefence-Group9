@@ -35,7 +35,7 @@ public abstract class Upgrade
 
     public int GetCost()
     {
-        return (int)(CalcCost() * GameMaster.costDifficulty);
+        return (int)(CalcCost() * GameMaster.instance.costDifficulty);
     }
 
     /// <summary>
@@ -46,17 +46,23 @@ public abstract class Upgrade
     {
         this.tower = tower; // Save the tower here for use in OnAttack() or OnHit() if required
 
-        int cost = CalcCost();
-        GameMaster.SpendMoney(cost);
-        tower.cost += cost;
+        int cost = GetCost();
 
-        tower.RemoveUpgrade(this); // Remove upgrade to prevent the upgrade from being bought twice
-        tower.ApplyUpgrade(this);
-
-        if (level < maxLevel)
+        if (GameMaster.instance.SpendMoney(cost))
         {
-            level += 1;
-            tower.AddUpgrade(this); // Add the next level of this upgrade
+            tower.cost += cost;
+
+            tower.RemoveUpgrade(this); // Remove upgrade to prevent the upgrade from being bought twice
+            tower.ApplyUpgrade(this);
+
+            GameMaster.instance.stats.upgradesApplied += 1;
+            GameMaster.instance.stats.upgradesCost += cost;
+
+            if (level < maxLevel)
+            {
+                level += 1;
+                tower.AddUpgrade(this); // Add the next level of this upgrade
+            }
         }
     }
 

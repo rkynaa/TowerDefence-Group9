@@ -12,7 +12,7 @@ public abstract class Entity : MonoBehaviour
     public AudioClip damageSound;
 
     private float _health;
-    float Health { 
+    public float Health { 
         get { return _health; } 
         set 
         {
@@ -31,7 +31,13 @@ public abstract class Entity : MonoBehaviour
 
     [SerializeField]
     private float _maxHealth = 10;
-    public float MaxHealth { get { return _maxHealth; } }
+    public float MaxHealth { get { return _maxHealth; }
+        set 
+        {
+            _maxHealth = value;
+            healthBar.maxHealth = value;
+        }
+    }
 
     bool _isDead = false;
     bool IsDead { get { return _isDead; }
@@ -63,24 +69,37 @@ public abstract class Entity : MonoBehaviour
     /// Reduces the entity's health by damage. Can also be used to heal the entity
     /// </summary>
     /// <param name="damage">The amount to reduce the entity's health by</param>
-    public void DamageEntity(float damage)
+    public void DamageEntity(float damage, bool noSound = false)
     {
-        Health -= damage;
-        healthBar.Value = Health;
-
-        if (damageSound != null && damage > 0)
+        if (OnDamage(damage))
         {
-            AudioSource.PlayClipAtPoint(damageSound, new Vector2(0, 0));
+            Health -= damage;
+            healthBar.Value = Health;
+
+            if (!noSound && damageSound != null && damage > 0)
+            {
+                AudioSource.PlayClipAtPoint(damageSound, new Vector2(0, 0), GameMaster.volume);
+            }
         }
     }
 
     /// <summary>
-    /// Called when the entity's health is reduced to 0 (or less)
+    /// Called before the entity's health is reduced to 0 (or less)
     /// </summary>
     /// <returns>If the entity died.</returns>
     public virtual bool OnDeath()
     {
         return true; 
+    }
+
+    /// <summary>
+    /// Called before the entity's health is reduced
+    /// </summary>
+    /// <param name="damage">The amount the entity is damaged by</param>
+    /// <returns>Whether to cancel the event</returns>
+    public virtual bool OnDamage(float damage)
+    {
+        return true;
     }
 
     /// <summary>
