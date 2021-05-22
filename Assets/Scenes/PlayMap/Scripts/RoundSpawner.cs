@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoundSpawner : MonoBehaviour
 {
-    private enum SpawnState { STARTING, SPAWNING, WAITING, ENDED }
+    public enum SpawnState { STARTING, SPAWNING, WAITING, ENDED }
 
     [System.Serializable]
     public class Round
@@ -50,7 +50,7 @@ public class RoundSpawner : MonoBehaviour
 
             for (int i = 0; i < enemies.Length; i++)
             {
-                multipliers[i] = enemies[i].count / divisor;
+                multipliers[i] = (double) enemies[i].count / divisor;
             }
         }
 
@@ -58,7 +58,7 @@ public class RoundSpawner : MonoBehaviour
         {
             for (int i = 0; i < enemies.Length; i++)
             {
-                enemies[i].count = (int)multipliers[i] * round;
+                enemies[i].count = (int) (multipliers[i] * round);
             }
         }
     }
@@ -68,12 +68,13 @@ public class RoundSpawner : MonoBehaviour
 
     public Transform[] spawnPoints;
 
-    public float timeBetweenRounds = 5f;
+    private float timeBetweenRounds = 1f;
     private float roundCountdown;
 
     private const float minDelay = 0.01f;
 
-    private SpawnState state = SpawnState.ENDED;
+    [HideInInspector]
+    public SpawnState state = SpawnState.ENDED;
 
     private void Start()
     {
@@ -132,6 +133,7 @@ public class RoundSpawner : MonoBehaviour
             {
                 freeplayTemplate.Populate(nextRound);
                 round = freeplayTemplate;
+                GameMaster.instance.enemyDifficulty += 0.2;
             }
 
             StartCoroutine(SpawnRound(round));
@@ -191,7 +193,7 @@ public class RoundSpawner : MonoBehaviour
     /// <returns>True if enemies > 0</returns>
     bool IsEnemyAlive()
     {
-        return GameMaster.instance.EnemiesAlive > 0;
+        return GameMaster.instance.enemiesAlive.Count > 0;
     }
 
     /// <summary>

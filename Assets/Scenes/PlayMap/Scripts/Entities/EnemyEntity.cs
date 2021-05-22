@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class EnemyEntity : Entity
 {
     protected Entity target;
-    public static CoreEntity core = null;
+    protected float targetDistance;
 
     public float targetingRange = 4f;
     public string targetTag = "Tower";
@@ -24,15 +24,16 @@ public abstract class EnemyEntity : Entity
     {
         base.Start();
         attackSpeed = (float) (attackSpeed * 1 / GameMaster.instance.enemyDifficulty);
+        speed = (float) (speed + 0.1 * speed * 1 / GameMaster.instance.enemyDifficulty);
 
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
-        InvokeRepeating("CheckAttack", attackSpeed, attackSpeed);
+        InvokeRepeating("CheckAttack", 1 / attackSpeed, 1 / attackSpeed);
         if (partToRotate == null)
         {
             partToRotate = gameObject.transform;
         }
-        target = core;
-        GameMaster.instance.EnemiesAlive += 1;
+        target = GameMaster.instance.core;
+        GameMaster.instance.enemiesAlive.Add(this);
     }
 
     void UpdateTarget()
@@ -55,15 +56,17 @@ public abstract class EnemyEntity : Entity
         if (nearestTarget != null && shortestDistance <= targetingRange)
         {
             target = nearestTarget.GetComponent<Entity>();
+            targetDistance = shortestDistance;
         }
         else
         {
-            target = core;
+            target = GameMaster.instance.core;
+            targetDistance = Vector3.Distance(transform.position, target.transform.position);
         }
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (target == null)
             return;
@@ -75,8 +78,11 @@ public abstract class EnemyEntity : Entity
         Quaternion rotation = Quaternion.LookRotation(dir, transform.TransformDirection(Vector3.back));
         partToRotate.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
 
-        // move towards the target
-        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, step);
+        if (targetDistance > attackingRange - 1)
+        {
+            // move towards the target
+            transform.position = Vector2.MoveTowards(transform.position, target.transform.position, step);
+        }
     }
 
     void CheckAttack()
@@ -102,7 +108,7 @@ public abstract class EnemyEntity : Entity
     {
         GameMaster.instance.stats.enemiesKilled += 1;
 
-        GameMaster.instance.EnemiesAlive -= 1;
+        GameMaster.instance.enemiesAlive.Remove(this);
         GameMaster.instance.GainMoney(defeatReward);
         return base.OnDeath();
     }

@@ -70,12 +70,12 @@ MonoBehaviour:
   healthBar: {fileID: 3623153064954849805}
   deathSound: {fileID: 8300000, guid: 796b14f56e653a74e949a23639fd6674, type: 3}
   damageSound: {fileID: 8300000, guid: 991b841fb9a0a9a488ad1c5ab36d2e79, type: 3}
-  _maxHealth: 10
+  _maxHealth: 20
   targetingRange: 4
   targetTag: Tower
   attackingRange: 1
   attackSpeed: 1
-  speed: 1
+  speed: 0.9
   defeatReward: 5
   partToRotate: {fileID: 6635688945463850802}
 --- !u!1 &6635688945463850803

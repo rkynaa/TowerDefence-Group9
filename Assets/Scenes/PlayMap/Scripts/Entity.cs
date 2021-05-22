@@ -31,7 +31,13 @@ public abstract class Entity : MonoBehaviour
 
     [SerializeField]
     private float _maxHealth = 10;
-    public float MaxHealth { get { return _maxHealth; } }
+    public float MaxHealth { get { return _maxHealth; }
+        set 
+        {
+            _maxHealth = value;
+            healthBar.maxHealth = value;
+        }
+    }
 
     bool _isDead = false;
     bool IsDead { get { return _isDead; }
@@ -63,14 +69,14 @@ public abstract class Entity : MonoBehaviour
     /// Reduces the entity's health by damage. Can also be used to heal the entity
     /// </summary>
     /// <param name="damage">The amount to reduce the entity's health by</param>
-    public void DamageEntity(float damage)
+    public void DamageEntity(float damage, bool noSound = false)
     {
-        if(OnDamage(damage))
+        if (OnDamage(damage))
         {
             Health -= damage;
             healthBar.Value = Health;
 
-            if (damageSound != null && damage > 0)
+            if (!noSound && damageSound != null && damage > 0)
             {
                 AudioSource.PlayClipAtPoint(damageSound, new Vector2(0, 0), GameMaster.volume);
             }

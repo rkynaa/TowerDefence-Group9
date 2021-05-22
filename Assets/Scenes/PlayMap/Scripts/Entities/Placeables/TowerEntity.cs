@@ -120,12 +120,10 @@ public abstract class TowerEntity : PlaceableEntity
             return;
         }
 
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag); // Inefficient but easy to implement for the prototype
-
         float shortestDistance = Mathf.Infinity;
-        GameObject nearestEnemy = null;
+        EnemyEntity nearestEnemy = null;
 
-        foreach (GameObject enemy in enemies)
+        foreach (EnemyEntity enemy in GameMaster.instance.enemiesAlive)
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
             if (distanceToEnemy < shortestDistance)
@@ -137,11 +135,7 @@ public abstract class TowerEntity : PlaceableEntity
 
         if (nearestEnemy != null && shortestDistance <= Range)
         {
-            target = nearestEnemy.GetComponent<EnemyEntity>();
-        }
-        else
-        {
-            target = null;
+            target = nearestEnemy;
         }
     }
 
@@ -160,11 +154,10 @@ public abstract class TowerEntity : PlaceableEntity
 
         if (attackCountdown <= 0f)
         {
-            if (target != null)
-                foreach (Upgrade upgrade in upgrades)
-                {
-                    upgrade.OnAttack();
-                }
+            foreach (Upgrade upgrade in upgrades)
+            {
+                upgrade.OnAttack();
+            }
             Attack();
             attackCountdown = 1 / attackSpeed;
         }
@@ -251,7 +244,7 @@ public abstract class TowerEntity : PlaceableEntity
     private bool isUIOpen = false;
     protected void OnMouseUpAsButton()
     {
-        if (isUIOpen)
+        if (isUIOpen || curState != State.ACTIVE)
         {
             // Close ui
             CloseUI();

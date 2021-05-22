@@ -6,7 +6,7 @@ public class GameMaster : MonoBehaviour
 {
     public static GameMaster instance;
 
-    private void Start()
+    private void Awake()
     {
         instance = this;
     }
@@ -21,11 +21,12 @@ public class GameMaster : MonoBehaviour
     /// </summary>
     public double enemyDifficulty = 1;
 
-    public int EnemiesAlive = 0;
+    public List<EnemyEntity> enemiesAlive;
 
     private int money = 1000;
 
     public Statistics stats = new Statistics();
+    public CoreEntity core;
 
     [Header("Settings")]
     public static float volume = 1;

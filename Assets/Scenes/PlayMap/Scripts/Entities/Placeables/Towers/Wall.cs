@@ -10,7 +10,7 @@ public class Wall : TowerEntity
         base.Start();
 
         // Initialise upgrades here
-        AddUpgrade(new UpgradeDamage());
+        AddUpgrade(new UpgradeHealth());
     }
 
     // Wall cannot attack
@@ -19,11 +19,11 @@ public class Wall : TowerEntity
 
     }
 
-    private class UpgradeDamage : Upgrade
+    private class UpgradeHealth : Upgrade
     {
         readonly int[] cost = new int[5] { 50, 60, 70, 90, 150 };
 
-        public UpgradeDamage()
+        public UpgradeHealth()
         {
             maxLevel = cost.Length;
         }
@@ -35,12 +35,13 @@ public class Wall : TowerEntity
 
         public override string GetName()
         {
-            return "Damage";
+            return "Health";
         }
 
         public override void OnUpgrade()
         {
-            tower.attackProjectile.damage += 5;
+            tower.Health += 5;
+            tower.MaxHealth += 5;
         }
     }
 }

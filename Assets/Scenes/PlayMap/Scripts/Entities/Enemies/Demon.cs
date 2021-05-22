@@ -12,6 +12,6 @@ public class Demon : EnemyEntity
 
     public override void Attack()
     {
-        target.DamageEntity(5);
+        target.DamageEntity(4);
     }
 }

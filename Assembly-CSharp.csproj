@@ -57,18 +57,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scenes\PlayMap\Scripts\HideableUI.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\Towers\GoldTower.cs" />
     <Compile Include="Assets\Scripts\Roman.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\RoundSpawner.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\Entity.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\Upgrade.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\PlaceableEntity.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\Towers\MachineGunTower.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\Towers\Wall.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\HideableUI\HealthBar.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Enemies\SampleEnemy.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Statistics.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\EnemyEntity.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Enemies\Demon.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\GameMaster.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\HideableUI\ListUpgradesAvail.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\Towers\SampleTower.cs" />
     <Compile Include="Assets\BackMenu.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\Towers\ArcherTower.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Enemies\Gargoyle.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Enemies\Dragon.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Enemies\Zombie.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\BuildManager.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\CoreEntity.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\TowerEntity.cs" />
@@ -76,16 +85,8 @@
     <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\HeroEntity.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\HideableUI\RangeCircle.cs" />
     <Compile Include="Assets\MainMenu.cs" />
-    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\Towers\ArcherTower.cs" />
-    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\Towers\Wall.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\Towers\WizardTower.cs" />
-    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\Towers\MachineGunTower.cs" />
-    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\Towers\GoldTower.cs" />
-    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Enemies\Zombie.cs" />
-    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Enemies\Gargoyle.cs" />
-    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Enemies\Demon.cs" />
-    <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Enemies\Dragon.cs" />
-    <Compile Include="Assets\Scenes\PlayMap\Scripts\Statistics.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\FlameProjectile.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -8,7 +8,7 @@ public class CoreEntity : PlaceableEntity
     {
         base.Start();
 
-        EnemyEntity.core = this;
+        GameMaster.instance.core = this;
     }
 
     public override bool CancelMove()

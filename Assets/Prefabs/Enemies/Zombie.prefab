@@ -175,7 +175,9 @@ MonoBehaviour:
   attackingRange: 1
   attackSpeed: 1
   speed: 1
+  defeatReward: 1
   partToRotate: {fileID: 8616888947750267566}
+  test: {fileID: 0}
 --- !u!1001 &6512357382454285395
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -216,35 +218,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7698732812879999991, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7698732812879999991, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7698732812879999991, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.66736645
-      objectReference: {fileID: 0}
-    - target: {fileID: 7698732812879999991, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.66736645
-      objectReference: {fileID: 0}
-    - target: {fileID: 7698732812879999991, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.66736645
-      objectReference: {fileID: 0}
-    - target: {fileID: 7698732812879999991, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7698732812879999991, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7698732812879999991, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
-      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7698732812879999991, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
@@ -264,12 +242,8 @@ PrefabInstance:
       value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7698732812879999991, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.024
-      objectReference: {fileID: 0}
-    - target: {fileID: 7698732812879999991, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.415
+      value: 0.523
       objectReference: {fileID: 0}
     - target: {fileID: 7698732812879999991, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
