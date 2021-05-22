@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;//kushan
+using UnityEngine.UI;
 
 public class CoreEntity : PlaceableEntity
 {
@@ -25,5 +27,10 @@ public class CoreEntity : PlaceableEntity
     private void OnDestroy()
     {
         // You Lose!
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);//kushan
+
     }
+
+    
 }

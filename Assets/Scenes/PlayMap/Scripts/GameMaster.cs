@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.UI;//Kushan
 
 public class GameMaster : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class GameMaster : MonoBehaviour
 
     private static int money = 0;
 
+    //public Text moneyText;
+
     public static int GetMoney()
     {
         return money;
@@ -29,6 +32,7 @@ public class GameMaster : MonoBehaviour
         {
             return false;
         }
+        //moneyText.text = money.ToString();//kushan
         return true;
     }
 
@@ -44,6 +48,7 @@ public class GameMaster : MonoBehaviour
             return false;
         }
         money -= value;
+        //moneyText.text = money.ToString();//kushan
         return true;
     }
 
