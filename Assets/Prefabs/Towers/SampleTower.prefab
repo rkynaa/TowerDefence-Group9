@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5279375340328674697}
   m_Layer: 0
   m_Name: SampleTower
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,15 +152,17 @@ MonoBehaviour:
   damageSound: {fileID: 8300000, guid: b5d4b936ac8104f46b893dd341d1997d, type: 3}
   _maxHealth: 40
   cost: 50
-  Moveable: 1
+  Moveable: 0
   Spawner: 1
-  curState: 0
+  curState: 2
   name: Sample Tower
+  canAttack: 1
   range: 4
   attackSpeed: 1
   attackProjectile: {fileID: -7522466113046686158, guid: 70bcb8f8b4ef5a649aec7ff18ed00c0c, type: 3}
   firePoint: {fileID: 1826141318287132238}
   rangeCircle: {fileID: 3790460875784239799}
+  displayUpgList: {fileID: 0}
   enemyTag: Enemy
   partToRotate: {fileID: 6683675132700892530}
 --- !u!50 &5279375340328674697

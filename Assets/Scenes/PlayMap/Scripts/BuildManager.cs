@@ -78,7 +78,7 @@ public class BuildManager : MonoBehaviour
     {
         if(GameMaster.instance.HasMoney(tower.cost * GameMaster.instance.costDifficulty))
         {
-            toBuild = tower;
+            toBuild = Instantiate(tower);
         }
     }
 }

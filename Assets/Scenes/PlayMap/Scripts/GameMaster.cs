@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.UI;//Kushan
+using UnityEngine.UI;//Kushan
 
 public class GameMaster : MonoBehaviour
 {
@@ -29,11 +29,16 @@ public class GameMaster : MonoBehaviour
     public Statistics stats = new Statistics();
     public CoreEntity core;
 
-    //public Text moneyText;
+    public Text moneyText;
 
     [Header("Settings")]
     public static float volume = 1;
     public static bool autoNextRound = true;
+
+    void Start()
+    {
+        moneyText.text = money.ToString();//kushan
+    }
 
     public int GetMoney()
     {
@@ -46,7 +51,6 @@ public class GameMaster : MonoBehaviour
         {
             return false;
         }
-        //moneyText.text = money.ToString();//kushan
         return true;
     }
 
@@ -62,7 +66,7 @@ public class GameMaster : MonoBehaviour
             return false;
         }
         money -= value;
-        //moneyText.text = money.ToString();//kushan
+        moneyText.text = money.ToString();//kushan
         return true;
     }
 
@@ -74,5 +78,6 @@ public class GameMaster : MonoBehaviour
     public void GainMoney(int value)
     {
         money += value;
+        moneyText.text = money.ToString();//kushan
     }
 }

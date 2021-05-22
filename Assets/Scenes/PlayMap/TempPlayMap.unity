@@ -443,7 +443,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &65673174
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1434,6 +1434,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce2ef2b195ca3354b8d7fb7ac3da3338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  costDifficulty: 1
+  enemyDifficulty: 1
+  enemiesAlive: []
+  core: {fileID: 0}
+  moneyText: {fileID: 0}
 --- !u!4 &850103047 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2865918348948724511, guid: d7f7737e385106e45a4d31bb6f7d9ec0, type: 3}
@@ -2259,6 +2264,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce2ef2b195ca3354b8d7fb7ac3da3338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  costDifficulty: 1
+  enemyDifficulty: 1
+  enemiesAlive: []
+  core: {fileID: 0}
+  moneyText: {fileID: 0}
 --- !u!114 &1369780063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2271,6 +2281,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b36bfb25681d6a44babf7355ed64b435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  freeplayTemplate:
+    enemies: []
+    divisor: 1
   rounds:
   - enemies:
     - enemy: {fileID: 369309366954543471, guid: 86fc5913aa2b0474fbec32160893cdb5, type: 3}
@@ -2296,7 +2309,7 @@ MonoBehaviour:
   - {fileID: 850103047}
   - {fileID: 279518266}
   - {fileID: 949914403}
-  timeBetweenRounds: 5
+  state: 3
 --- !u!1001 &1543493844
 PrefabInstance:
   m_ObjectHideFlags: 0
