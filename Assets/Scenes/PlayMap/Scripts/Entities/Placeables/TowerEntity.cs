@@ -67,6 +67,18 @@ public abstract class TowerEntity : PlaceableEntity
         }
     }
 
+    public override bool OnDeath()
+    {
+        GameMaster.instance.stats.towersLost += 1;
+        return true;
+    }
+
+    public override bool OnDamage(float damage)
+    {
+        GameMaster.instance.stats.damageTaken += damage;
+        return base.OnDamage(damage);
+    }
+
     public virtual int GetSellPrice()
     {
         return (int)(cost * 0.8 * (Health / MaxHealth));
@@ -75,18 +87,22 @@ public abstract class TowerEntity : PlaceableEntity
     public void SellTower()
     {
         Destroy(gameObject);
-        GameMaster.GainMoney(GetSellPrice());
+        GameMaster.instance.GainMoney(GetSellPrice());
     }
 
     public virtual int GetRepairPrice()
     {
-        return (int)(cost * 0.35 * GameMaster.costDifficulty);
+        return (int)(cost * 0.35 * GameMaster.instance.costDifficulty);
     }
 
     public void RepairTower()
     {
-        if (GameMaster.SpendMoney(GetRepairPrice()))
+        int repairPrice = GetRepairPrice();
+        if (GameMaster.instance.SpendMoney(repairPrice))
         {
+            GameMaster.instance.stats.repairCount += 1;
+            GameMaster.instance.stats.repairCost += repairPrice;
+            GameMaster.instance.stats.repairAmount += MaxHealth - Health;
             Health = MaxHealth;
         }
     }
@@ -175,6 +191,8 @@ public abstract class TowerEntity : PlaceableEntity
     public override void OnHit(Entity target, float damage)
     {
         EnemyEntity enemy = (EnemyEntity)target; // safe
+
+        GameMaster.instance.stats.damageDealt += damage;
 
         foreach (Upgrade upgrade in upgrades)
         {

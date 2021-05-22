@@ -36,6 +36,33 @@ public class RoundSpawner : MonoBehaviour
         public float delayAfter;
     }
 
+    public FreeplayRound freeplayTemplate;
+
+    [System.Serializable]
+    public class FreeplayRound : Round
+    {
+        public int divisor = 1;
+        private double[] multipliers;
+
+        public void CalcRatios()
+        {
+            multipliers = new double[enemies.Length];
+
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                multipliers[i] = enemies[i].count / divisor;
+            }
+        }
+
+        public void Populate(int round)
+        {
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                enemies[i].count = (int)multipliers[i] * round;
+            }
+        }
+    }
+
     public Round[] rounds;
     private int nextRound = 0;
 
@@ -44,13 +71,14 @@ public class RoundSpawner : MonoBehaviour
     public float timeBetweenRounds = 5f;
     private float roundCountdown;
 
-    private float minDelay = 0.01f;
+    private const float minDelay = 0.01f;
 
     private SpawnState state = SpawnState.ENDED;
 
     private void Start()
     {
         roundCountdown = timeBetweenRounds;
+        freeplayTemplate.CalcRatios();
     }
 
     public void StartRound()
@@ -79,7 +107,7 @@ public class RoundSpawner : MonoBehaviour
         }
 
         // TODO: swap this out with a next round button
-        if(state == SpawnState.ENDED)
+        if(state == SpawnState.ENDED && GameMaster.autoNextRound)
         {
             if (roundCountdown <= 0)
             {
@@ -94,13 +122,21 @@ public class RoundSpawner : MonoBehaviour
         if (state == SpawnState.STARTING)
         {
             Debug.Log("Spawning round number " + nextRound);
-            StartCoroutine(SpawnRound(rounds[nextRound]));
+            Round round;
 
-            if (nextRound < rounds.Length - 1)
+            if (nextRound < rounds.Length)
             {
-                nextRound += 1;
-                // Update Round Counter Here
+                round = rounds[nextRound];
             }
+            else
+            {
+                freeplayTemplate.Populate(nextRound);
+                round = freeplayTemplate;
+            }
+
+            StartCoroutine(SpawnRound(round));
+
+            nextRound += 1;
         }
 
     }
@@ -155,7 +191,7 @@ public class RoundSpawner : MonoBehaviour
     /// <returns>True if enemies > 0</returns>
     bool IsEnemyAlive()
     {
-        return GameMaster.EnemiesAlive > 0;
+        return GameMaster.instance.EnemiesAlive > 0;
     }
 
     /// <summary>

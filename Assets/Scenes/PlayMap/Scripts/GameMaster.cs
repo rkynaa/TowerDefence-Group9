@@ -4,28 +4,39 @@ using UnityEngine;
 
 public class GameMaster : MonoBehaviour
 {
+    public static GameMaster instance;
+
+    private void Start()
+    {
+        instance = this;
+    }
+
     /// <summary>
     /// Multiplier for tower and upgrade cost
     /// </summary>
-    public static double costDifficulty = 1;
+    public double costDifficulty = 1;
 
     /// <summary>
     /// Difficulty multiplier for enemy health, and damage
     /// </summary>
-    public static double enemyDifficulty = 1;
+    public double enemyDifficulty = 1;
 
-    public static int EnemiesAlive = 0;
+    public int EnemiesAlive = 0;
 
-    private static int money = 1000;
+    private int money = 1000;
 
+    public Statistics stats = new Statistics();
+
+    [Header("Settings")]
     public static float volume = 1;
+    public static bool autoNextRound = true;
 
-    public static int GetMoney()
+    public int GetMoney()
     {
         return money;
     }
 
-    public static bool HasMoney(int value)
+    public bool HasMoney(int value)
     {
         if (money - value < 0)
         {
@@ -34,12 +45,12 @@ public class GameMaster : MonoBehaviour
         return true;
     }
 
-    public static bool HasMoney(double value)
+    public bool HasMoney(double value)
     {
         return HasMoney((int) value);
     }
 
-    public static bool SpendMoney(int value)
+    public bool SpendMoney(int value)
     {
         if(money - value < 0 || value < 0)
         {
@@ -49,12 +60,12 @@ public class GameMaster : MonoBehaviour
         return true;
     }
 
-    public static bool SpendMoney(double value)
+    public bool SpendMoney(double value)
     {
         return SpendMoney((int) value);
     }
 
-    public static void GainMoney(int value)
+    public void GainMoney(int value)
     {
         money += value;
     }

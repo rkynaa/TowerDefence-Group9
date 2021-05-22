@@ -23,7 +23,7 @@ public abstract class EnemyEntity : Entity
     protected override void Start()
     {
         base.Start();
-        attackSpeed = (float) (attackSpeed * 1 / GameMaster.enemyDifficulty);
+        attackSpeed = (float) (attackSpeed * 1 / GameMaster.instance.enemyDifficulty);
 
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         InvokeRepeating("CheckAttack", attackSpeed, attackSpeed);
@@ -32,7 +32,7 @@ public abstract class EnemyEntity : Entity
             partToRotate = gameObject.transform;
         }
         target = core;
-        GameMaster.EnemiesAlive += 1;
+        GameMaster.instance.EnemiesAlive += 1;
     }
 
     void UpdateTarget()
@@ -100,8 +100,10 @@ public abstract class EnemyEntity : Entity
 
     public override bool OnDeath()
     {
-        GameMaster.EnemiesAlive -= 1;
-        GameMaster.GainMoney(defeatReward);
+        GameMaster.instance.stats.enemiesKilled += 1;
+
+        GameMaster.instance.EnemiesAlive -= 1;
+        GameMaster.instance.GainMoney(defeatReward);
         return base.OnDeath();
     }
 
