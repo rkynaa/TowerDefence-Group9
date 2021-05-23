@@ -27,7 +27,7 @@ public class CoreEntity : PlaceableEntity
     private void OnDestroy()
     {
         // You Lose!
-        GameMaster.instance.StartCoroutine(GameOver(1f));
+        GameMaster.instance.StartCoroutine(GameOver(2f));
     }
 
     private IEnumerator GameOver(float time)

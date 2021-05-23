@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.UI;
 
-public class Statistics
+public class Statistics 
 {
     public int towersPlaced = 0;
     public int towersLost = 0;

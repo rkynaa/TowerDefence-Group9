@@ -29,11 +29,18 @@ public class GameMaster : MonoBehaviour
     public Statistics stats = new Statistics();
     public CoreEntity core;
 
-    public Text moneyText;
+    public Text moneyText;//k
+    //public AudioMixer audioMixer;//k
 
     [Header("Settings")]
-    public static float volume = 1;
+    public static float volume ;//=1
     public static bool autoNextRound = true;
+
+    //audiokushan
+    //public void volume(float volume)
+    //{
+    //    audioMixer.SetFloat("volume", volume);
+    //}
 
     void Start()
     {

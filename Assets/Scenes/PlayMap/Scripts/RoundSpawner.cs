@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RoundSpawner : MonoBehaviour
 {
@@ -73,6 +74,8 @@ public class RoundSpawner : MonoBehaviour
 
     private const float minDelay = 0.01f;
 
+    public Text roundtext;//k
+
     [HideInInspector]
     public SpawnState state = SpawnState.ENDED;
 
@@ -87,6 +90,7 @@ public class RoundSpawner : MonoBehaviour
         if(state == SpawnState.ENDED)
         {
             state = SpawnState.STARTING;
+            
         }
     }
 
@@ -139,7 +143,9 @@ public class RoundSpawner : MonoBehaviour
             StartCoroutine(SpawnRound(round));
 
             nextRound += 1;
+            roundtext.text = nextRound.ToString();//k
             // Display Here
+
         }
 
     }
