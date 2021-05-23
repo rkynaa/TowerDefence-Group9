@@ -3,9 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;//Kushan
 
-public class GameMaster
+public class GameMaster : MonoBehaviour
 {
     public static GameMaster instance;
+
+    public void Awake()
+    {
+        if(instance != null)
+        {
+            instance = new GameMaster();
+        }
+    }
 
     /// <summary>
     /// Multiplier for tower and upgrade cost
