@@ -103,6 +103,7 @@ public class RoundSpawner : MonoBehaviour
             {
                 // Finish round
                 state = SpawnState.ENDED;
+                GameMaster.instance.GainMoney(200);
                 // TODO: Push round ended state to start round button here
             } 
             else
@@ -137,7 +138,7 @@ public class RoundSpawner : MonoBehaviour
             {
                 freeplayTemplate.Populate(nextRound);
                 round = freeplayTemplate;
-                GameMaster.instance.enemyDifficulty += 0.2;
+                GameMaster.instance.enemyDifficulty += 0.4;
             }
 
             StartCoroutine(SpawnRound(round));

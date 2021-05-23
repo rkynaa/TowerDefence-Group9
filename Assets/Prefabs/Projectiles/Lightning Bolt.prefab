@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3267222127062384764}
   - component: {fileID: 6419352720101607043}
-  - component: {fileID: 7435662749525330714}
+  - component: {fileID: 6780692469685046602}
   - component: {fileID: 4410020875032095069}
   m_Layer: 0
   m_Name: Lightning Bolt
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7435662749525330714
+--- !u!114 &6780692469685046602
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,13 +93,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6403113506403329017}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56677876817399046afe2d5c53899f7e, type: 3}
+  m_Script: {fileID: 11500000, guid: 839c866cf50725d41be84befad72168a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 0}
   speed: 10
-  damage: 20
+  damage: 19
+  pierce: 2
   lifeTime: 0.5
+  enableTracking: 0
 --- !u!70 &4410020875032095069
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

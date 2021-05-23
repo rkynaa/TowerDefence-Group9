@@ -14,10 +14,7 @@ public class Wall : TowerEntity
     }
 
     // Wall cannot attack
-    public override void Attack()
-    {
-
-    }
+    public override void Attack() { }
 
     private class UpgradeHealth : Upgrade
     {

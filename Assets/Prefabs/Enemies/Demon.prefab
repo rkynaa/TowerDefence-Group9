@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2141081448693964171}
   - component: {fileID: 2141081448693964169}
   - component: {fileID: 6658537519652933378}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 2141081449111454981}
   - component: {fileID: 2141081449111454980}
   - component: {fileID: -1203936750532637402}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Demon
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -187,6 +187,18 @@ PrefabInstance:
     - target: {fileID: 1617172682655379761, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
       propertyPath: m_Name
       value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617172682655379761, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2040686173672523149, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3616438967474688558, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7698732812879999991, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
       propertyPath: m_Pivot.x

@@ -3,14 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;//Kushan
 
-public class GameMaster : MonoBehaviour
+public class GameMaster
 {
     public static GameMaster instance;
-
-    private void Awake()
-    {
-        instance = this;
-    }
 
     /// <summary>
     /// Multiplier for tower and upgrade cost
@@ -22,11 +17,15 @@ public class GameMaster : MonoBehaviour
     /// </summary>
     public double enemyDifficulty = 1;
 
+    [HideInInspector]
     public List<EnemyEntity> enemiesAlive;
 
     private int money = 1000;
 
+    [HideInInspector]
     public Statistics stats = new Statistics();
+
+    [HideInInspector]
     public CoreEntity core;
 
     public Text moneyText;//k
@@ -44,6 +43,7 @@ public class GameMaster : MonoBehaviour
 
     void Start()
     {
+        money = (int) (money / costDifficulty);
         moneyText.text = money.ToString();//kushan
     }
 

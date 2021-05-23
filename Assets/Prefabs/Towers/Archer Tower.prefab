@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 7249549512103544976}
   - component: {fileID: 7973644977920470095}
   - component: {fileID: 8423053898551466802}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Archer Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,9 +204,9 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   damageSound: {fileID: 8300000, guid: b5d4b936ac8104f46b893dd341d1997d, type: 3}
   _maxHealth: 20
-  cost: 250
-  Moveable: 0
-  Spawner: 0
+  cost: 150
+  Moveable: 1
+  Spawner: 1
   curState: 0
   name: Archer Tower
   canAttack: 1

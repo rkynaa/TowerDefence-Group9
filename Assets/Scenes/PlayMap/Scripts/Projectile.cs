@@ -5,9 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Projectile : MonoBehaviour
 {
-    /// <summary>
-    /// These upgrades get their OnHit() methods called
-    /// </summary>
     [HideInInspector]
     public Entity source = null; 
 
@@ -16,10 +13,11 @@ public class Projectile : MonoBehaviour
 
     public float speed = 4f;
     public float damage = 5f;
+    public int pierce = 2;
 
     public float lifeTime = 1f;
 
-    public void Fire(Transform target)
+    public virtual void Fire(Transform target)
     {
         this.target = target;
         // direction = target.transform.position - transform.position;
@@ -67,6 +65,10 @@ public class Projectile : MonoBehaviour
     protected virtual void HitTarget(EnemyEntity target)
     {
         target.DamageEntity(damage);
-        Destroy(gameObject);
+        pierce--;
+        if (pierce <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

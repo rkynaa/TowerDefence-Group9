@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 7447640271152105088}
   - component: {fileID: 5287869759496155864}
   - component: {fileID: 1441208000118565196}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Machine Gun Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,13 +316,14 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   damageSound: {fileID: 8300000, guid: b5d4b936ac8104f46b893dd341d1997d, type: 3}
   _maxHealth: 30
-  cost: 500
+  cost: 250
   Moveable: 1
   Spawner: 1
   curState: 0
   name: Machine Gun
+  target: {fileID: 0}
   canAttack: 1
-  range: 2
+  range: 3
   attackSpeed: 4
   attackProjectile: {fileID: 5541423692260938010, guid: 2e8200c250dbcfc42ad32cb1e8d20027, type: 3}
   firePoint: {fileID: 17596496927633111}

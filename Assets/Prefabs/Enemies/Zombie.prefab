@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8616888947750267566}
   - component: {fileID: 1340006449536901758}
   - component: {fileID: 8729583180202944569}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 9200068063561010723}
   - component: {fileID: 5547476409486405232}
   - component: {fileID: 9200068063561010722}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Zombie
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -188,6 +188,18 @@ PrefabInstance:
     - target: {fileID: 1617172682655379761, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
       propertyPath: m_Name
       value: HealthBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617172682655379761, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2040686173672523149, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3616438967474688558, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7698732812879999991, guid: 349bb4c00402d93469f8144f5317336a, type: 3}
       propertyPath: m_Pivot.x

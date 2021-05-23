@@ -152,9 +152,9 @@ MonoBehaviour:
   damageSound: {fileID: 8300000, guid: b5d4b936ac8104f46b893dd341d1997d, type: 3}
   _maxHealth: 40
   cost: 50
-  Moveable: 0
+  Moveable: 1
   Spawner: 1
-  curState: 2
+  curState: 0
   name: Sample Tower
   canAttack: 1
   range: 4

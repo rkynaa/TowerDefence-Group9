@@ -62,7 +62,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attachedTower: {fileID: 0}
-  collider: {fileID: 537294284629210135}
   circle: {fileID: 537294285887146823}
 --- !u!1 &537294285887146841
 GameObject:
