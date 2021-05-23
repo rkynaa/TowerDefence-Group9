@@ -8,7 +8,7 @@ public abstract class TowerEntity : PlaceableEntity
     [Header("Tower Entity")]
 
     public new string name;
-    protected Entity target;
+    public Entity target;
 
     /// <summary>
     /// If this tower can attack and target enemies
@@ -58,7 +58,7 @@ public abstract class TowerEntity : PlaceableEntity
 
         if (canAttack)
         {
-            InvokeRepeating("UpdateTarget", 0f, 0.5f);
+            InvokeRepeating("UpdateTarget", 0f, 0.1f);
         }
 
         if (partToRotate == null)
@@ -197,6 +197,7 @@ public abstract class TowerEntity : PlaceableEntity
     {
         GameObject projectileGO = Instantiate(attackProjectile.gameObject, firePoint.position, partToRotate.rotation);
         Projectile proj = projectileGO.GetComponent<Projectile>();
+        proj.source = this;
         proj.Fire(target.transform);
     }
 

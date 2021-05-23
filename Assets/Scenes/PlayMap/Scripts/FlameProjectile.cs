@@ -9,6 +9,9 @@ public class FlameProjectile : MonoBehaviour
     private new ParticleSystem particleSystem;
     private List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
 
+    public enum Mode { NONE, ENEMY, TOWER }
+    public Mode mode = Mode.NONE;
+
     private void Start()
     {
         particleSystem = GetComponent<ParticleSystem>();
@@ -16,13 +19,27 @@ public class FlameProjectile : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        PlaceableEntity tower = other.GetComponent<PlaceableEntity>();
+        Entity target;
+
+        switch (mode)
+        {
+            case Mode.ENEMY:
+                target = other.GetComponent<PlaceableEntity>();
+                break;
+            case Mode.TOWER:
+                target = other.GetComponent<EnemyEntity>();
+                break;
+            default:
+                target = other.GetComponent<Entity>();
+                break;
+        }
+
 
         int numCollisionEvents = particleSystem.GetCollisionEvents(other, collisionEvents);
 
-        if (tower != null)
+        if (target != null)
         {
-            tower.DamageEntity(damage * numCollisionEvents, true);
+            target.DamageEntity(damage * numCollisionEvents, true);
         }
     }
 }

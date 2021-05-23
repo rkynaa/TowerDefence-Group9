@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 7850949489608649647}
   - component: {fileID: 7406079382515044208}
   - component: {fileID: 4950049357355490554}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wizard Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,15 +204,15 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   damageSound: {fileID: 8300000, guid: b5d4b936ac8104f46b893dd341d1997d, type: 3}
   _maxHealth: 20
-  cost: 750
+  cost: 500
   Moveable: 1
   Spawner: 1
   curState: 0
   name: Wizard Tower
   canAttack: 1
-  range: 3
-  attackSpeed: 0.5
-  attackProjectile: {fileID: 7435662749525330714, guid: d87fb4f6a46843442b36a5ca98449048, type: 3}
+  range: 4
+  attackSpeed: 1.3
+  attackProjectile: {fileID: 6780692469685046602, guid: d87fb4f6a46843442b36a5ca98449048, type: 3}
   firePoint: {fileID: 3950914480618286263}
   rangeCircle: {fileID: 1952831634713251918}
   displayUpgList: {fileID: 0}

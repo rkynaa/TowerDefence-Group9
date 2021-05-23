@@ -37,6 +37,7 @@ public class GameMaster : MonoBehaviour
 
     void Start()
     {
+        money = (int) (money / costDifficulty);
         moneyText.text = money.ToString();//kushan
     }
 

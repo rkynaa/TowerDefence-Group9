@@ -63,6 +63,7 @@ public abstract class PlaceableEntity : Entity
     /// <returns>Whether to interupt</returns>
     public virtual bool CancelMove()
     {
+        GameMaster.instance.GainMoney(cost);
         return false;
     }
 
@@ -72,10 +73,13 @@ public abstract class PlaceableEntity : Entity
         {
             if(Spawner)
             {
-                GameObject copy = Instantiate(gameObject);
-                PlaceableEntity copyScript = copy.GetComponent<PlaceableEntity>();
-                copyScript.curState = State.MOVING;
-                // copyScript.Spawner = false;
+                if(GameMaster.instance.SpendMoney(cost))
+                {
+                    GameObject copy = Instantiate(gameObject);
+                    PlaceableEntity copyScript = copy.GetComponent<PlaceableEntity>();
+                    copyScript.curState = State.MOVING;
+                    // copyScript.Spawner = false;
+                }
             }
             else
             {
@@ -117,7 +121,7 @@ public abstract class PlaceableEntity : Entity
     protected virtual void OnCollisionExit2D(Collision2D collision)
     {
         collidedCount--;
-        if (curState == State.MOVING)
+        if (curState == State.MOVING && collidedCount <= 0)
         {
             SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
             for (int i = 0; i < spriteRenderers.Length; i++)

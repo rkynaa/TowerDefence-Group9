@@ -10,7 +10,7 @@ public class WizardTower : TowerEntity
         base.Start();
 
         // Initialise upgrades here
-        AddUpgrade(new UpgradeDamage());
+        AddUpgrade(new UpgradePierce());
     }
 
     // Change this if you need multiple projectiles or other.
@@ -20,11 +20,11 @@ public class WizardTower : TowerEntity
         // target.DamageEntity(5);
     }
 
-    private class UpgradeDamage : Upgrade
+    private class UpgradePierce : Upgrade
     {
-        readonly int[] cost = new int[5] { 50, 60, 70, 90, 150 };
+        readonly int[] cost = new int[] { 150, 250 };
 
-        public UpgradeDamage()
+        public UpgradePierce()
         {
             maxLevel = cost.Length;
         }
@@ -36,12 +36,14 @@ public class WizardTower : TowerEntity
 
         public override string GetName()
         {
-            return "Damage";
+            return "Pierce";
         }
 
         public override void OnUpgrade()
         {
-            tower.attackProjectile.damage += 5;
+            tower.attackProjectile.pierce += 1;
         }
     }
+
+
 }

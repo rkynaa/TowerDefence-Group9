@@ -6,7 +6,7 @@ public class GoldTower : TowerEntity
 {
     private float cooldown = 0;
     private float gainInterval = 10;
-    private int gainAmount = 10;
+    private int gainAmount = 20;
 
     // Start is called before the first frame update
     protected override void Start()
