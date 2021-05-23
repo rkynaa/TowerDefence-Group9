@@ -321,8 +321,9 @@ MonoBehaviour:
   Spawner: 1
   curState: 0
   name: Machine Gun
+  target: {fileID: 0}
   canAttack: 1
-  range: 2
+  range: 3
   attackSpeed: 4
   attackProjectile: {fileID: 5541423692260938010, guid: 2e8200c250dbcfc42ad32cb1e8d20027, type: 3}
   firePoint: {fileID: 17596496927633111}
