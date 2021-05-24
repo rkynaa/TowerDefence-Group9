@@ -23,8 +23,8 @@ public class SettingsMenu : MonoBehaviour
 
     public void Easy()
     {
-        Debug.Log("Easy");
         GameMaster.instance.costDifficulty = 0.5;
         GameMaster.instance.enemyDifficulty = 0.5;
+        Debug.Log("Easy " + GameMaster.instance.costDifficulty);
     }
 }

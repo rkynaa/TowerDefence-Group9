@@ -209,7 +209,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 83.4
+  m_fontSize: 60.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1529,7 +1529,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 66.8
+  m_fontSize: 49.5
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2157,6 +2157,7 @@ GameObject:
   - component: {fileID: 490142087}
   - component: {fileID: 490142086}
   - component: {fileID: 490142085}
+  - component: {fileID: 490142089}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2251,6 +2252,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &490142089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490142084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a2db44f3cf5a04598e64baaabc6d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -4107,6 +4120,7 @@ MonoBehaviour:
   costDifficulty: 1
   enemyDifficulty: 1
   enemiesAlive: []
+  money: 1000
   core: {fileID: 0}
   moneyText: {fileID: 0}
 --- !u!1 &1313391510
@@ -4568,7 +4582,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 46.95
+  m_fontSize: 34.15
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4628,7 +4642,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1584273459}
   - component: {fileID: 1584273460}
-  - component: {fileID: 1584273462}
   - component: {fileID: 1584273461}
   m_Layer: 5
   m_Name: Difficultyobject
@@ -4687,23 +4700,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 0}
---- !u!114 &1584273462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1584273458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce2ef2b195ca3354b8d7fb7ac3da3338, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  costDifficulty: 1
-  enemyDifficulty: 1
-  enemiesAlive: []
-  core: {fileID: 0}
-  moneyText: {fileID: 0}
 --- !u!1 &1609563406
 GameObject:
   m_ObjectHideFlags: 0
@@ -6270,7 +6266,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 51.1
+  m_fontSize: 36.3
   m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -6597,7 +6593,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2061597095}
   - component: {fileID: 2061597096}
-  - component: {fileID: 2061597097}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -6641,23 +6636,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: 372c9645d1510d2408332ea033549ace, type: 2}
---- !u!114 &2061597097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061597094}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce2ef2b195ca3354b8d7fb7ac3da3338, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  costDifficulty: 1
-  enemyDifficulty: 1
-  enemiesAlive: []
-  core: {fileID: 0}
-  moneyText: {fileID: 0}
 --- !u!1 &2122226673
 GameObject:
   m_ObjectHideFlags: 0

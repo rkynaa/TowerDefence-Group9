@@ -93,6 +93,9 @@
     <Compile Include="Assets\Scenes\PlayMap\Scripts\TrackingProjectile.cs" />
     <Compile Include="Assets\SettingsMenu.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\HideableUI\UpgradePanel.cs" />
+    <Compile Include="Assets\StatisticsDisplay.cs" />
+    <Compile Include="Assets\MoneyText.cs" />
+    <Compile Include="Assets\GameMasterFactory.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

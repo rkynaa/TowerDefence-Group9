@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2613266265582246034}
-  - component: {fileID: 2613266265582246033}
   - component: {fileID: 2613266265582246032}
   - component: {fileID: 2613266265582246063}
   m_Layer: 0
@@ -33,23 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2613266265582246033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2613266265582246035}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce2ef2b195ca3354b8d7fb7ac3da3338, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  costDifficulty: 1
-  enemyDifficulty: 1
-  enemiesAlive: []
-  core: {fileID: 0}
-  moneyText: {fileID: 0}
 --- !u!114 &2613266265582246032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,6 +463,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  roundtext: {fileID: 0}
   state: 3
 --- !u!114 &2613266265582246063
 MonoBehaviour:

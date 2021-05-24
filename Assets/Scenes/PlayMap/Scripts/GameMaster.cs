@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;//Kushan
 
-public class GameMaster : MonoBehaviour
+public class GameMaster
 {
     public static GameMaster instance;
 
-    public void Awake()
+    public static void Awake()
     {
         if (instance == null)
         {
-            instance = this;
+            Debug.Log("Creating GameMaster object.");
+            instance = new GameMaster();
+        }
+        else
+        {
+            Debug.Log("Detected duplicate GameMaster object.");
         }
     }
 
