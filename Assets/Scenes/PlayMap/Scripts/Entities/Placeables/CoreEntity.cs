@@ -20,6 +20,42 @@ public class CoreEntity : PlaceableEntity
         return true;
     }
 
+    protected virtual void Update()
+    {
+        if (curState == State.MOVING)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (!CancelMove())
+                {
+                    Destroy(gameObject);
+                }
+                return;
+            }
+
+            Vector3 newPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            newPos.z = 0;
+            transform.position = newPos;
+        }
+    }
+
+    protected virtual void OnMouseDown()
+    {
+        if (curState != State.MOVING)
+        {
+            curState = State.MOVING;
+        }
+    }
+
+    protected virtual void OnMouseUp()
+    {
+        if (ValidLocation && curState == State.MOVING)
+        {
+            curState = State.ACTIVE;
+            Placed();
+        }
+    }
+
     public override void Placed()
     {
         base.Placed();

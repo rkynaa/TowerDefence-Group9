@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scenes\PlayMap\Scripts\Entities\Placeables\Towers\Flamethower.cs" />
     <Compile Include="Assets\Scenes\PlayMap\Scripts\TrackingProjectile.cs" />
     <Compile Include="Assets\SettingsMenu.cs" />
+    <Compile Include="Assets\Scenes\PlayMap\Scripts\HideableUI\UpgradePanel.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
