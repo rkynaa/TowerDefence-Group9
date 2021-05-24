@@ -40,7 +40,7 @@ public class GameMaster : MonoBehaviour
 
     [Header("Settings")]
     public static float volume = 1;
-    public static bool autoNextRound = true;//k
+    public static bool autoNextRound = false;//k
 
 
     void Start()
