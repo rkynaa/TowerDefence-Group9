@@ -22,9 +22,13 @@ public abstract class EnemyEntity : Entity
     // Start is called before the first frame update
     protected override void Start()
     {
+        MaxHealth = (float) (MaxHealth * GameMaster.instance.enemyDifficulty);
         base.Start();
-        attackSpeed = (float) (attackSpeed * 1 / GameMaster.instance.enemyDifficulty);
-        speed = (float) (speed + 0.1 * speed * 1 / GameMaster.instance.enemyDifficulty);
+        if (GameMaster.instance.enemyDifficulty > 1)
+        {
+            attackSpeed = (float)(attackSpeed * GameMaster.instance.enemyDifficulty);
+            speed = (float)(speed + 0.5 * speed * GameMaster.instance.enemyDifficulty);
+        }
 
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         InvokeRepeating("CheckAttack", 1 / attackSpeed, 1 / attackSpeed);
