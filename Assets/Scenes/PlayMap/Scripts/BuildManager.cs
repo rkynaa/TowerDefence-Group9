@@ -32,15 +32,17 @@ public class BuildManager : MonoBehaviour
         }
     }
 
+    private bool leftHeld = false;
+
     private void Update()
     {
         if (toBuild != null)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonUp(1))
             {
                 if (!toBuild.CancelMove())
                 {
-                    Destroy(toBuild);
+                    Destroy(toBuild.gameObject);
                     toBuild = null;
                     return;
                 }
@@ -48,7 +50,7 @@ public class BuildManager : MonoBehaviour
             }
 
             // 0 = left, 1 = right, 2 = middle
-            if (Input.GetMouseButtonUp(0))
+            if (leftHeld && Input.GetMouseButtonUp(0))
             {
                 if (toBuild.ValidLocation)
                 {
@@ -58,10 +60,19 @@ public class BuildManager : MonoBehaviour
                         GameMaster.instance.stats.towersCost += cost;
                         GameMaster.instance.stats.towersPlaced += 1;
                         toBuild.Placed();
+                        toBuild = null;
                     }
-                    toBuild = null;
                     return;
                 }
+            }
+
+            if (Input.GetMouseButton(0))
+            {
+                leftHeld = true;
+            }
+            else
+            {
+                leftHeld = false;
             }
 
             Vector3 newPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -76,9 +87,11 @@ public class BuildManager : MonoBehaviour
     /// <param name="tower">The tower to build</param>
     public void BuildTower(TowerEntity tower)
     {
-        if(GameMaster.instance.HasMoney(tower.cost * GameMaster.instance.costDifficulty))
+        if (GameMaster.instance.HasMoney(tower.cost * GameMaster.instance.costDifficulty))
         {
+            leftHeld = false;
             toBuild = Instantiate(tower);
+            toBuild.curState = PlaceableEntity.State.MOVING;
         }
     }
 }

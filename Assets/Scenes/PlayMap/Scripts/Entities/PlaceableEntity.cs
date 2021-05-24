@@ -7,9 +7,6 @@ public abstract class PlaceableEntity : Entity
     [Header("PlaceableEntity")]
     public int cost = 0;
 
-    public bool Moveable = true;
-    public bool Spawner = true;
-
     public enum State
     {
         DISABLED,
@@ -37,25 +34,6 @@ public abstract class PlaceableEntity : Entity
         }
     }
 
-    protected virtual void Update()
-    {
-        if(curState == State.MOVING)
-        {
-            if(Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (!CancelMove())
-                {
-                    Destroy(gameObject);
-                }
-                return;
-            }
-
-            Vector3 newPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            newPos.z = 0;
-            transform.position = newPos;
-        }
-    }
-
     /// <summary>
     /// When a move is canceled a tower can interupt the cancel if required.
     /// Inturupting a cancel should occur only if the tower is a required tower such as the core
@@ -67,42 +45,8 @@ public abstract class PlaceableEntity : Entity
         return false;
     }
 
-    protected virtual void OnMouseDown()
-    {
-        if(Moveable && curState != State.MOVING)
-        {
-            if(Spawner)
-            {
-                if(GameMaster.instance.SpendMoney(cost))
-                {
-                    GameObject copy = Instantiate(gameObject);
-                    PlaceableEntity copyScript = copy.GetComponent<PlaceableEntity>();
-                    copyScript.curState = State.MOVING;
-                    // copyScript.Spawner = false;
-                }
-            }
-            else
-            {
-                curState = State.MOVING;
-            }
-        }
-    }
-
-    protected virtual void OnMouseUp()
-    {
-        if(ValidLocation && curState == State.MOVING)
-        {
-            Moveable = false;
-            // Spawner = false;
-            curState = State.ACTIVE;
-            Placed();
-        }
-    }
-
     public virtual void Placed()
     {
-        Moveable = false;
-        // Spawner = false;
         curState = State.ACTIVE;
     }
 

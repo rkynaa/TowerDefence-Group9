@@ -140,10 +140,8 @@ public abstract class TowerEntity : PlaceableEntity
     }
 
     // Update is called once per frame
-    protected override void Update()
+    protected virtual void Update()
     {
-        base.Update();
-
         if (!canAttack || target == null || curState != State.ACTIVE)
             return;
 
