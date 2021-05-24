@@ -81,7 +81,7 @@ public abstract class TowerEntity : PlaceableEntity
 
     public virtual int GetSellPrice()
     {
-        return (int)(cost * 0.8 * (Health / MaxHealth));
+        return (int)(Cost * 0.8 * (Health / MaxHealth));
     }
 
     public void SellTower()
@@ -92,7 +92,7 @@ public abstract class TowerEntity : PlaceableEntity
 
     public virtual int GetRepairPrice()
     {
-        return (int)(cost * 0.35 * GameMaster.instance.costDifficulty);
+        return (int)(Cost * 0.35);
     }
 
     public void RepairTower()

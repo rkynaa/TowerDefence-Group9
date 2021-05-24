@@ -5,7 +5,15 @@ using UnityEngine;
 public abstract class PlaceableEntity : Entity
 {
     [Header("PlaceableEntity")]
-    public int cost = 0;
+
+    [SerializeField]
+    private int cost = 0;
+    public int Cost { get { return (int)(cost * GameMaster.instance.costDifficulty); } }
+
+    public void AddCost(int money)
+    {
+        cost += money;
+    }
 
     public enum State
     {
@@ -41,7 +49,7 @@ public abstract class PlaceableEntity : Entity
     /// <returns>Whether to interupt</returns>
     public virtual bool CancelMove()
     {
-        GameMaster.instance.GainMoney(cost);
+        GameMaster.instance.GainMoney(Cost);
         return false;
     }
 

@@ -50,7 +50,7 @@ public abstract class Upgrade
 
         if (GameMaster.instance.SpendMoney(cost))
         {
-            tower.cost += cost;
+            tower.AddCost(cost);
 
             tower.RemoveUpgrade(this); // Remove upgrade to prevent the upgrade from being bought twice
             tower.ApplyUpgrade(this);
