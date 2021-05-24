@@ -12,9 +12,18 @@ public class SettingsMenu : MonoBehaviour
     public void SetVolume (float volume)
     {
         audioMixer.SetFloat("volume", volume);
-        //GameMaster.instance.volume(audioMixer);
+        GameMaster.volume = volume;
+    }
 
+    public void Hard(double costDifficulty, double enemyDifficulty)
+    {
+        GameMaster.instance.costDifficulty = 4;
+        GameMaster.instance.enemyDifficulty = 4;
+    }
 
-
+    public void Easy(double costDifficulty, double enemyDifficulty)
+    {
+        GameMaster.instance.costDifficulty = 0.5;
+        GameMaster.instance.enemyDifficulty = 0.5;
     }
 }

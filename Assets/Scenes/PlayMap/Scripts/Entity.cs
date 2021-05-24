@@ -48,7 +48,7 @@ public abstract class Entity : MonoBehaviour
             {
                 if(deathSound != null)
                 {
-                    AudioSource.PlayClipAtPoint(deathSound, new Vector2(0, 0));
+                    AudioSource.PlayClipAtPoint(deathSound, new Vector2(0, 0), GameMaster.volume);
                 }
                 Destroy(gameObject);
             }

@@ -104,6 +104,7 @@ public class RoundSpawner : MonoBehaviour
                 // Finish round
                 state = SpawnState.ENDED;
                 GameMaster.instance.GainMoney(200);
+                //StartRound();//k ?Money gets added nonstop
                 // TODO: Push round ended state to start round button here
             } 
             else
@@ -113,7 +114,7 @@ public class RoundSpawner : MonoBehaviour
         }
 
         // TODO: swap this out with a next round button
-        if(state == SpawnState.ENDED && GameMaster.autoNextRound)
+        if (state == SpawnState.ENDED && GameMaster.autoNextRound)
         {
             if (roundCountdown <= 0)
             {

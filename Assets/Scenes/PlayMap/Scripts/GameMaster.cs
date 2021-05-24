@@ -9,9 +9,9 @@ public class GameMaster : MonoBehaviour
 
     public void Awake()
     {
-        if(instance != null)
+        if (instance == null)
         {
-            instance = new GameMaster();
+            instance = this;
         }
     }
 
@@ -37,21 +37,15 @@ public class GameMaster : MonoBehaviour
     public CoreEntity core;
 
     public Text moneyText;//k
-    //public AudioMixer audioMixer;//k
 
     [Header("Settings")]
-    public static float volume ;//=1
-    public static bool autoNextRound = true;
+    public static float volume = 1;
+    public static bool autoNextRound = true;//k
 
-    //audiokushan
-    //public void volume(float volume)
-    //{
-    //    audioMixer.SetFloat("volume", volume);
-    //}
 
     void Start()
     {
-        money = (int) (money / costDifficulty);
+        money = (int)(money / costDifficulty);
         moneyText.text = money.ToString();//kushan
     }
 
@@ -71,12 +65,12 @@ public class GameMaster : MonoBehaviour
 
     public bool HasMoney(double value)
     {
-        return HasMoney((int) value);
+        return HasMoney((int)value);
     }
 
     public bool SpendMoney(int value)
     {
-        if(money - value < 0 || value < 0)
+        if (money - value < 0 || value < 0)
         {
             return false;
         }
@@ -87,7 +81,7 @@ public class GameMaster : MonoBehaviour
 
     public bool SpendMoney(double value)
     {
-        return SpendMoney((int) value);
+        return SpendMoney((int)value);
     }
 
     public void GainMoney(int value)
@@ -95,4 +89,25 @@ public class GameMaster : MonoBehaviour
         money += value;
         moneyText.text = money.ToString();//kushan
     }
+
+    //k
+    //public void Easydifficulty()
+    //{
+        //GameMaster.instance.
+      //  costDifficulty = 0.5;
+        //GameMaster.instance.
+        //enemyDifficulty = 0.5;
+    //}
+
+    //k
+    //public void Harddifficulty()
+    //{
+        //GameMaster.instance.
+    //    costDifficulty = 4;
+        //GameMaster.instance.
+    //    enemyDifficulty = 4;
+    //}
+
+
+
 }
