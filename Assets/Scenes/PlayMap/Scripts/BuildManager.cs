@@ -54,7 +54,7 @@ public class BuildManager : MonoBehaviour
             {
                 if (toBuild.ValidLocation)
                 {
-                    int cost = (int)(toBuild.cost * GameMaster.instance.costDifficulty);
+                    int cost = toBuild.Cost;
                     if (GameMaster.instance.SpendMoney(cost))
                     {
                         GameMaster.instance.stats.towersCost += cost;
@@ -87,7 +87,7 @@ public class BuildManager : MonoBehaviour
     /// <param name="tower">The tower to build</param>
     public void BuildTower(TowerEntity tower)
     {
-        if (GameMaster.instance.HasMoney(tower.cost * GameMaster.instance.costDifficulty))
+        if (GameMaster.instance.HasMoney(tower.Cost))
         {
             leftHeld = false;
             toBuild = Instantiate(tower);

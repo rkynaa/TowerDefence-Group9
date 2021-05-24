@@ -12,13 +12,13 @@ public class Shop : MonoBehaviour
 
     public void Start()
     {
-        costText.text = "Cost: " + tower.cost;
+        costText.text = "Cost: " + tower.Cost;
         nameText.text = tower.name;
     }
 
     public void Click()
     {
-        costText.text = "Cost: " + tower.cost;
+        costText.text = "Cost: " + tower.Cost;
         BuildManager.instance.BuildTower(tower);
     }
 }
