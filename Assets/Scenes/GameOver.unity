@@ -2449,6 +2449,7 @@ GameObject:
   - component: {fileID: 1541294217}
   - component: {fileID: 1541294219}
   - component: {fileID: 1541294218}
+  - component: {fileID: 1541294220}
   m_Layer: 5
   m_Name: statDisplay
   m_TagString: Untagged
@@ -2517,6 +2518,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1541294216}
   m_CullTransparentMesh: 1
+--- !u!114 &1541294220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541294216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dd4325d47b75fb4ab9ceab9979adf73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1543404938
 GameObject:
   m_ObjectHideFlags: 0
@@ -2968,7 +2981,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2095170585}
-  - component: {fileID: 2095170586}
   m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
@@ -2996,24 +3008,3 @@ RectTransform:
   m_AnchoredPosition: {x: -12.759, y: -3.6876}
   m_SizeDelta: {x: 328.45, y: 282.4887}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2095170586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2095170584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc71de81052ed354b831a3d77ad42e42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
-  deathSound: {fileID: 0}
-  damageSound: {fileID: 0}
-  _maxHealth: 10
-  cost: 0
-  Moveable: 1
-  Spawner: 1
-  curState: 2
-  statDisplay: {fileID: 1541294218}

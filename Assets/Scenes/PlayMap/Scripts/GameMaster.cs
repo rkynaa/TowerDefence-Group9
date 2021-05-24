@@ -40,13 +40,13 @@ public class GameMaster : MonoBehaviour
 
     [Header("Settings")]
     public static float volume = 1;
-    public static bool autoNextRound = false;//k
+    public static bool autoNextRound = true;//k
 
 
     void Start()
     {
         money = (int)(money / costDifficulty);
-        moneyText.text = money.ToString();//kushan
+        
     }
 
     public int GetMoney()
