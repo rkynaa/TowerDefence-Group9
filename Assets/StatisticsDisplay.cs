@@ -11,8 +11,21 @@ public class StatisticsDisplay : MonoBehaviour
     {
         Text text = GetComponent<Text>();
         Statistics s = GameMaster.instance.stats;
-        text.text = "Enemies Killed: " + s.enemiesKilled;
+        text.text = "Enemies Killed: " + s.enemiesKilled + "\n" +
+            "Bosses Killed: " + s.bossesKilled + "\n" +
+            "Towers Placed: " + s.towersPlaced + "\n" +
+            "Towers Lost: " + s.towersLost + "\n" +
+            "Towers Cost: " + s.towersCost + "\n" +
+            "Repair Cost: " + s.repairCost + "\n" +
+            "Upgrades Applied: " + s.upgradesApplied + "\n" +
+            "Upgrades Cost: " + s.upgradesCost + "\n" +
+            "Damage Dealt: " + s.damageDealt + "\n" +
+            "Damage Taken: " + s.damageTaken + "\n" +
+            "Money Generated: " + s.moneyGenerated + "\n";
+
     }
+
+
 
     // Update is called once per frame
     void Update()

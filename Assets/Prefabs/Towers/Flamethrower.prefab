@@ -4943,8 +4943,6 @@ MonoBehaviour:
   damageSound: {fileID: 8300000, guid: b5d4b936ac8104f46b893dd341d1997d, type: 3}
   _maxHealth: 20
   cost: 250
-  Moveable: 1
-  Spawner: 1
   curState: 0
   name: Flamethower
   target: {fileID: 0}
