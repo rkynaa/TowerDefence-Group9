@@ -13,6 +13,7 @@ public class GameMaster
         {
             Debug.Log("Creating GameMaster object.");
             instance = new GameMaster();
+            instance.Start();
         }
         else
         {
@@ -31,7 +32,7 @@ public class GameMaster
     public double enemyDifficulty = 1;
 
     [HideInInspector]
-    public List<EnemyEntity> enemiesAlive;
+    public List<EnemyEntity> enemiesAlive = new List<EnemyEntity>();
 
     private int money = 1000;
 
@@ -51,7 +52,6 @@ public class GameMaster
     void Start()
     {
         money = (int)(money / costDifficulty);
-        
     }
 
     public int GetMoney()
@@ -94,25 +94,4 @@ public class GameMaster
         money += value;
         moneyText.text = money.ToString();//kushan
     }
-
-    //k
-    //public void Easydifficulty()
-    //{
-        //GameMaster.instance.
-      //  costDifficulty = 0.5;
-        //GameMaster.instance.
-        //enemyDifficulty = 0.5;
-    //}
-
-    //k
-    //public void Harddifficulty()
-    //{
-        //GameMaster.instance.
-    //    costDifficulty = 4;
-        //GameMaster.instance.
-    //    enemyDifficulty = 4;
-    //}
-
-
-
 }
