@@ -115,7 +115,7 @@ public abstract class TowerEntity : PlaceableEntity
 
     void UpdateTarget()
     {
-        if (!canAttack)
+        if (!canAttack || curState != State.ACTIVE)
         {
             return;
         }

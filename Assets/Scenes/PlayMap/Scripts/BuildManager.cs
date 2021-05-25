@@ -36,6 +36,14 @@ public class BuildManager : MonoBehaviour
 
     private void Update()
     {
+        for (int i = 0; i < towers.Length || i >= 9; i++)
+        {
+            if (Input.GetKeyDown((i + 1).ToString()))
+            {
+                BuildTower(towers[i]);
+            }
+        }
+
         if (toBuild != null)
         {
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonUp(1))
@@ -90,6 +98,19 @@ public class BuildManager : MonoBehaviour
     {
         if (GameMaster.instance.HasMoney(tower.Cost))
         {
+            if(toBuild != null)
+            {
+                if (!toBuild.CancelMove())
+                {
+                    Destroy(toBuild.gameObject);
+                }
+                else
+                {
+                    // Cannot cancel building the current building!
+                    return;
+                }
+            }
+
             leftHeld = false;
             toBuild = Instantiate(tower);
             toBuild.curState = PlaceableEntity.State.MOVING;

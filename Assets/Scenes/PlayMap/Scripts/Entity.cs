@@ -48,11 +48,16 @@ public abstract class Entity : MonoBehaviour
             {
                 if(deathSound != null)
                 {
-                    AudioSource.PlayClipAtPoint(deathSound, new Vector2(0, 0), GameMaster.volume);
+                    PlayClip(deathSound);
                 }
                 Destroy(gameObject);
             }
         }
+    }
+
+    private void PlayClip(AudioClip clip)
+    {
+        AudioSource.PlayClipAtPoint(clip, new Vector3(0, 0, -10), GameMaster.volume);
     }
 
     protected virtual void Start()
@@ -78,7 +83,7 @@ public abstract class Entity : MonoBehaviour
 
             if (!noSound && damageSound != null && damage > 0)
             {
-                AudioSource.PlayClipAtPoint(damageSound, new Vector2(0, 0), GameMaster.volume);
+                PlayClip(damageSound);
             }
         }
     }

@@ -205,13 +205,12 @@ MonoBehaviour:
   damageSound: {fileID: 8300000, guid: b5d4b936ac8104f46b893dd341d1997d, type: 3}
   _maxHealth: 20
   cost: 150
-  Moveable: 1
-  Spawner: 1
   curState: 0
   name: Archer Tower
+  target: {fileID: 0}
   canAttack: 1
   range: 4
-  attackSpeed: 1
+  attackSpeed: 1.5
   attackProjectile: {fileID: 4521754478161057002, guid: c0be09e5dbe31cd45a7a5733aec2af20, type: 3}
   firePoint: {fileID: 4520428616585219976}
   rangeCircle: {fileID: 1402418489584202609}

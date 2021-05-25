@@ -204,11 +204,10 @@ MonoBehaviour:
   deathSound: {fileID: 0}
   damageSound: {fileID: 8300000, guid: b5d4b936ac8104f46b893dd341d1997d, type: 3}
   _maxHealth: 20
-  cost: 500
-  Moveable: 1
-  Spawner: 1
+  cost: 600
   curState: 0
   name: Wizard Tower
+  target: {fileID: 0}
   canAttack: 1
   range: 4
   attackSpeed: 1.3

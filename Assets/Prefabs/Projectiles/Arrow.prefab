@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 0}
-  speed: 4
+  speed: 5
   damage: 5
   pierce: 1
   lifeTime: 1
