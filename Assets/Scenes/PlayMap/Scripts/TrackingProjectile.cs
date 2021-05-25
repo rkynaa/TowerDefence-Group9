@@ -20,6 +20,11 @@ public class TrackingProjectile : Projectile
     {
         base.Update();
 
+        if(!enableTracking)
+        {
+            return;
+        }
+
         if (tower.target != null)
         {
             if (target != tower.target.transform)

@@ -99,6 +99,7 @@ MonoBehaviour:
   source: {fileID: 0}
   speed: 4
   damage: 5
+  pierce: 1
   lifeTime: 1
 --- !u!70 &7260703085168031405
 CapsuleCollider2D:

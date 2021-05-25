@@ -99,7 +99,7 @@ MonoBehaviour:
   source: {fileID: 0}
   speed: 10
   damage: 19
-  pierce: 2
+  pierce: 1
   lifeTime: 0.5
   enableTracking: 0
 --- !u!70 &4410020875032095069

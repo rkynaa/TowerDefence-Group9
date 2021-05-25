@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour
 
     public float speed = 4f;
     public float damage = 5f;
-    public int pierce = 2;
+    public int pierce = 1;
 
     public float lifeTime = 1f;
 

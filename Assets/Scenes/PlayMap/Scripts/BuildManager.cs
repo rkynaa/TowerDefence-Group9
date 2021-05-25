@@ -57,6 +57,7 @@ public class BuildManager : MonoBehaviour
                     int cost = toBuild.Cost;
                     if (GameMaster.instance.SpendMoney(cost))
                     {
+                        Debug.Log("Building tower");
                         GameMaster.instance.stats.towersCost += cost;
                         GameMaster.instance.stats.towersPlaced += 1;
                         toBuild.Placed();

@@ -21,6 +21,13 @@ public class GameMaster
         }
     }
 
+    public static void Reset()
+    {
+        Debug.Log("Creating GameMaster object.");
+        instance = new GameMaster();
+        instance.Start();
+    }
+
     /// <summary>
     /// Multiplier for tower and upgrade cost
     /// </summary>
@@ -52,6 +59,7 @@ public class GameMaster
     void Start()
     {
         money = (int)(money / costDifficulty);
+        UpdateMoney();
     }
 
     public int GetMoney()
@@ -80,7 +88,7 @@ public class GameMaster
             return false;
         }
         money -= value;
-        moneyText.text = money.ToString();//kushan
+        UpdateMoney();
         return true;
     }
 
@@ -92,6 +100,15 @@ public class GameMaster
     public void GainMoney(int value)
     {
         money += value;
+        UpdateMoney();
+    }
+
+    /// <summary>
+    /// Called after money is changed
+    /// </summary>
+    public void UpdateMoney()
+    {
         moneyText.text = money.ToString();//kushan
+        Shop.UpdateColor();
     }
 }

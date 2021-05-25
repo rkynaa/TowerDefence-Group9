@@ -45,5 +45,22 @@ public class WizardTower : TowerEntity
         }
     }
 
+    private class UpgradeTracking : Upgrade
+    {
+        protected override int CalcCost()
+        {
+            return 500;
+        }
+
+        public override string GetName()
+        {
+            return "Tracking";
+        }
+
+        public override void OnUpgrade()
+        {
+            ((TrackingProjectile)tower.attackProjectile).enableTracking = true;
+        }
+    }
 
 }

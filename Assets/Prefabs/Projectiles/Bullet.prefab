@@ -96,8 +96,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56677876817399046afe2d5c53899f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  source: {fileID: 0}
   speed: 4
   damage: 5
+  pierce: 1
+  lifeTime: 1
 --- !u!70 &-3631702659885960075
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

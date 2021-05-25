@@ -17,14 +17,14 @@ public class SettingsMenu : MonoBehaviour
 
     public void Hard()
     {
-        GameMaster.instance.costDifficulty = 1.5;
-        GameMaster.instance.enemyDifficulty = 1.5;
+        GameMaster.instance.costDifficulty = 1.2;
+        GameMaster.instance.enemyDifficulty = 1;
     }
 
     public void Easy()
     {
-        GameMaster.instance.costDifficulty = 0.5;
-        GameMaster.instance.enemyDifficulty = 0.5;
+        GameMaster.instance.costDifficulty = 0.8;
+        GameMaster.instance.enemyDifficulty = 0.8;
         Debug.Log("Easy " + GameMaster.instance.costDifficulty);
     }
 }

@@ -49,7 +49,6 @@ public abstract class PlaceableEntity : Entity
     /// <returns>Whether to interupt</returns>
     public virtual bool CancelMove()
     {
-        GameMaster.instance.GainMoney(Cost);
         return false;
     }
 
