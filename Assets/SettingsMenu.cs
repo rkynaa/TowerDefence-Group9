@@ -17,8 +17,8 @@ public class SettingsMenu : MonoBehaviour
 
     public void Hard()
     {
-        GameMaster.instance.costDifficulty = 2;
-        GameMaster.instance.enemyDifficulty = 1.5;
+        GameMaster.instance.costDifficulty = 1.5;
+        GameMaster.instance.enemyDifficulty = 1.2;
     }
 
     public void Easy()

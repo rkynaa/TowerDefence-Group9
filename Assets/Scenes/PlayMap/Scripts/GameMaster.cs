@@ -34,12 +34,12 @@ public class GameMaster
     /// <summary>
     /// Multiplier for tower and upgrade cost
     /// </summary>
-    public double costDifficulty = 1.5;
+    public double costDifficulty = 1.3;
 
     /// <summary>
     /// Difficulty multiplier for enemy health, and damage
     /// </summary>
-    public double enemyDifficulty = 1.2;
+    public double enemyDifficulty = 1.1;
 
     [HideInInspector]
     public List<EnemyEntity> enemiesAlive = new List<EnemyEntity>();
