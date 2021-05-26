@@ -11,6 +11,7 @@ public class WizardTower : TowerEntity
 
         // Initialise upgrades here
         AddUpgrade(new UpgradePierce());
+        AddUpgrade(new UpgradeTracking());
     }
 
     // Change this if you need multiple projectiles or other.

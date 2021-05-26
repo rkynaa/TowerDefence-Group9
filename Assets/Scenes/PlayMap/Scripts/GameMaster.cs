@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;//Kushan
+using TMPro;
 
 public class GameMaster
 {
@@ -14,6 +15,8 @@ public class GameMaster
             Debug.Log("Creating GameMaster object.");
             instance = new GameMaster();
             instance.Start();
+            green.a = 120;
+            red.a = 120;
         }
         else
         {
@@ -31,12 +34,12 @@ public class GameMaster
     /// <summary>
     /// Multiplier for tower and upgrade cost
     /// </summary>
-    public double costDifficulty = 1;
+    public double costDifficulty = 1.5;
 
     /// <summary>
     /// Difficulty multiplier for enemy health, and damage
     /// </summary>
-    public double enemyDifficulty = 1;
+    public double enemyDifficulty = 1.2;
 
     [HideInInspector]
     public List<EnemyEntity> enemiesAlive = new List<EnemyEntity>();
@@ -49,11 +52,14 @@ public class GameMaster
     [HideInInspector]
     public CoreEntity core;
 
-    public Text moneyText;//k
+    public TextMeshProUGUI moneyText;//k
 
     [Header("Settings")]
     public static float volume = 1;
     public static bool autoNextRound = true;//k
+
+    public static Color green = Color.green;
+    public static Color red = Color.red;
 
 
     void Start()
@@ -108,7 +114,11 @@ public class GameMaster
     /// </summary>
     public void UpdateMoney()
     {
-        moneyText.text = money.ToString();//kushan
         Shop.UpdateColor();
+        TowerPanel.UpdateUI();
+        if (moneyText != null)
+        {
+            moneyText.text = money.ToString();//kushan
+        }
     }
 }

@@ -22,6 +22,7 @@ public abstract class Entity : MonoBehaviour
             }
 
             _health = value;
+            healthBar.Value = Health;
             if (_health <= 0)
             {
                 IsDead = OnDeath();
@@ -36,6 +37,7 @@ public abstract class Entity : MonoBehaviour
         {
             _maxHealth = value;
             healthBar.maxHealth = value;
+            healthBar.Value = Health;
         }
     }
 
@@ -62,12 +64,12 @@ public abstract class Entity : MonoBehaviour
 
     protected virtual void Start()
     {
-        Health = MaxHealth;
-        if(healthBar == null)
+        if (healthBar == null)
         {
             healthBar = GetComponentInChildren<HealthBar>();
         }
         healthBar.maxHealth = MaxHealth;
+        Health = MaxHealth;
     }
 
     /// <summary>
@@ -79,7 +81,6 @@ public abstract class Entity : MonoBehaviour
         if (OnDamage(damage))
         {
             Health -= damage;
-            healthBar.Value = Health;
 
             if (!noSound && damageSound != null && damage > 0)
             {

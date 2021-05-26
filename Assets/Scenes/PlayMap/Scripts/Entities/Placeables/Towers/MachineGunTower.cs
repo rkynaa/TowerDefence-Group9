@@ -11,6 +11,7 @@ public class MachineGunTower : TowerEntity
 
         // Initialise upgrades here
         AddUpgrade(new UpgradeDamage());
+        AddUpgrade(new UpgradePierce());
     }
 
     // Change this if you need multiple projectiles or other.
@@ -42,6 +43,31 @@ public class MachineGunTower : TowerEntity
         public override void OnUpgrade()
         {
             tower.attackProjectile.damage += 5;
+        }
+    }
+
+    private class UpgradePierce : Upgrade
+    {
+        readonly int[] cost = new int[] { 150, 250 };
+
+        public UpgradePierce()
+        {
+            maxLevel = cost.Length;
+        }
+
+        protected override int CalcCost()
+        {
+            return cost[level];
+        }
+
+        public override string GetName()
+        {
+            return "Pierce";
+        }
+
+        public override void OnUpgrade()
+        {
+            tower.attackProjectile.pierce += 1;
         }
     }
 }

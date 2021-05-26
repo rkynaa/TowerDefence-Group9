@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class MoneyText : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        Text text = GetComponent<Text>();
-        GameMaster.instance.moneyText = text;
-        text.text = GameMaster.instance.GetMoney().ToString();//kushan
+        GameMaster.instance.moneyText = GetComponent<TextMeshProUGUI>();
     }
 }

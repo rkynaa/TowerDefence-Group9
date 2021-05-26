@@ -52,16 +52,18 @@ public abstract class Upgrade
         {
             tower.AddCost(cost);
 
-            tower.RemoveUpgrade(this); // Remove upgrade to prevent the upgrade from being bought twice
             tower.ApplyUpgrade(this);
 
             GameMaster.instance.stats.upgradesApplied += 1;
             GameMaster.instance.stats.upgradesCost += cost;
 
-            if (level < maxLevel)
+            if (level < maxLevel - 1)
             {
                 level += 1;
-                tower.AddUpgrade(this); // Add the next level of this upgrade
+            }
+            else
+            {
+                tower.RemoveUpgrade(this); // Remove upgrade to prevent the upgrade from being bought twice
             }
         }
     }

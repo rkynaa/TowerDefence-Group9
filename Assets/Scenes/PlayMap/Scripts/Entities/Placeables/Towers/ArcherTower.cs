@@ -69,7 +69,7 @@ public class ArcherTower : TowerEntity
 
         public override void OnUpgrade()
         {
-            tower.attackSpeed += 0.1f;
+            tower.attackSpeed += 0.5f;
         }
     }
 

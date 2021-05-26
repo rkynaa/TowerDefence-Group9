@@ -29,21 +29,19 @@ public abstract class TowerEntity : PlaceableEntity
         }
     }
     public float attackSpeed = 1f;
-
     private float attackCountdown = 0f;
 
     [Header("Upgrades")]
 
     protected HashSet<Upgrade> upgrades = new HashSet<Upgrade>();
-    protected List<Upgrade> upgradesAvailable = new List<Upgrade>();
+    [HideInInspector]
+    public List<Upgrade> upgradesAvailable = new List<Upgrade>();
 
     [Header("Unity Fields")]
 
     public Projectile attackProjectile;
     public Transform firePoint;
     public RangeCircle rangeCircle;
-
-    public ListUpgradesAvail displayUpgList;
 
     public string enemyTag = "Enemy";
 
@@ -92,6 +90,10 @@ public abstract class TowerEntity : PlaceableEntity
 
     public virtual int GetRepairPrice()
     {
+        if (Health == MaxHealth)
+        {
+            return 0;
+        }
         return (int)(Cost * 0.35);
     }
 
@@ -111,6 +113,7 @@ public abstract class TowerEntity : PlaceableEntity
     {
         base.Placed();
         tag = "Tower";
+        OpenUI();
     }
 
     void UpdateTarget()
@@ -159,7 +162,6 @@ public abstract class TowerEntity : PlaceableEntity
             Attack();
             attackCountdown = 1 / attackSpeed;
         }
-
         attackCountdown -= Time.deltaTime;
     }
 
@@ -231,8 +233,7 @@ public abstract class TowerEntity : PlaceableEntity
     {
         isUIOpen = true;
         rangeCircle.Show();
-        ListUpgradesAvail.initialize(this, upgradesAvailable);
-        UpgradePanel.OpenClosePanel(isUIOpen);
+        TowerPanel.Setup(this);
 
     }
 
@@ -240,7 +241,10 @@ public abstract class TowerEntity : PlaceableEntity
     {
         isUIOpen = false;
         rangeCircle.Hide();
-        UpgradePanel.OpenClosePanel(isUIOpen);
+        if (TowerPanel.active)
+        {
+            TowerPanel.Hide();
+        }
     }
 
     private bool isUIOpen = false;

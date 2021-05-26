@@ -103,8 +103,7 @@ public class RoundSpawner : MonoBehaviour
             {
                 // Finish round
                 state = SpawnState.ENDED;
-                GameMaster.instance.GainMoney(200);
-                //StartRound();//k ?Money gets added nonstop
+                GameMaster.instance.GainMoney(100);
                 // TODO: Push round ended state to start round button here
             } 
             else
