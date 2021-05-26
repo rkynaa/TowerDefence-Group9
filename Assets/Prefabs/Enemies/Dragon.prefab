@@ -73,7 +73,7 @@ MonoBehaviour:
   _maxHealth: 500
   targetingRange: 8
   targetTag: Tower
-  attackingRange: 4
+  attackingRange: 3
   attackSpeed: 0.5
   speed: 0.5
   defeatReward: 200
@@ -226,7 +226,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
@@ -295,7 +295,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2.29
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2

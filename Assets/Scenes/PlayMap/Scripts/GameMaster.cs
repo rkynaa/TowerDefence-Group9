@@ -34,6 +34,11 @@ public class GameMaster
         instance = new GameMaster();
     }
 
+    GameMaster()
+    {
+        enemiesAlive = new List<EnemyEntity>();
+    }
+
     public bool started = false;
 
     /// <summary>

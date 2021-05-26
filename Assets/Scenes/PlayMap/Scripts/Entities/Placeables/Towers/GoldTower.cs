@@ -5,8 +5,8 @@ using UnityEngine;
 public class GoldTower : TowerEntity
 {
     private float cooldown = 0;
-    private float gainInterval = 10;
-    private int gainAmount = 20;
+    private float gainInterval = 8;
+    private int gainAmount = 30;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -39,7 +39,7 @@ public class GoldTower : TowerEntity
 
     private class UpgradeGain : Upgrade
     {
-        readonly int[] cost = new int[5] { 50, 60, 70, 90, 150 };
+        readonly int[] cost = new int[] { 50, 60, 70, 90, 150 };
 
         public UpgradeGain()
         {
@@ -58,13 +58,13 @@ public class GoldTower : TowerEntity
 
         public override void OnUpgrade()
         {
-            ((GoldTower)tower).gainAmount += 5;
+            ((GoldTower)tower).gainAmount += 7;
         }
     }
 
     private class UpgradeInterval : Upgrade
     {
-        readonly int[] cost = new int[4] { 60, 65, 80, 150 };
+        readonly int[] cost = new int[] { 60, 65, 80, 150 };
 
         public UpgradeInterval()
         {
@@ -83,7 +83,7 @@ public class GoldTower : TowerEntity
 
         public override void OnUpgrade()
         {
-            ((GoldTower)tower).gainInterval -= 0.5f;
+            ((GoldTower)tower).gainInterval -= 1f;
         }
     }
 }

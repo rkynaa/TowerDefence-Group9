@@ -22,6 +22,12 @@ public abstract class Entity : MonoBehaviour
             }
 
             _health = value;
+
+            if (_health > MaxHealth)
+            {
+                _health = MaxHealth;
+            }
+
             healthBar.Value = Health;
             if (_health <= 0)
             {
@@ -87,6 +93,15 @@ public abstract class Entity : MonoBehaviour
                 PlayClip(damageSound);
             }
         }
+    }
+
+    /// <summary>
+    /// Reduces the entity's health by damage. Can also be used to heal the entity
+    /// </summary>
+    /// <param name="damage">The amount to reduce the entity's health by</param>
+    public void HealEntity(float healAmount)
+    {
+        Health += healAmount;
     }
 
     /// <summary>

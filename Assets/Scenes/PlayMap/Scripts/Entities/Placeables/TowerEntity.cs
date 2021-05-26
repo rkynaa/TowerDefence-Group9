@@ -270,4 +270,9 @@ public abstract class TowerEntity : PlaceableEntity
         Gizmos.color = Color.gray;
         Gizmos.DrawWireSphere(transform.position, Range);
     }
+
+    public void MendingHeal()
+    {
+        HealEntity(MaxHealth * 0.05f);
+    }
 }

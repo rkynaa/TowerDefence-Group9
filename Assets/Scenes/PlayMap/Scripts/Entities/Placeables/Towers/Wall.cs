@@ -11,6 +11,7 @@ public class Wall : TowerEntity
 
         // Initialise upgrades here
         AddUpgrade(new UpgradeHealth());
+        AddUpgrade(new UpgradeMending());
     }
 
     // Wall cannot attack
@@ -37,8 +38,33 @@ public class Wall : TowerEntity
 
         public override void OnUpgrade()
         {
-            tower.Health += 5;
-            tower.MaxHealth += 5;
+            tower.Health += 10;
+            tower.MaxHealth += 10;
+        }
+    }
+
+    private class UpgradeMending : Upgrade
+    {
+        readonly int[] cost = new int[] { 500 };
+
+        public UpgradeMending()
+        {
+            maxLevel = cost.Length;
+        }
+
+        protected override int CalcCost()
+        {
+            return cost[level];
+        }
+
+        public override string GetName()
+        {
+            return "Mending";
+        }
+
+        public override void OnUpgrade()
+        {
+            tower.InvokeRepeating("MendingHeal", 2f, 2f);
         }
     }
 }
