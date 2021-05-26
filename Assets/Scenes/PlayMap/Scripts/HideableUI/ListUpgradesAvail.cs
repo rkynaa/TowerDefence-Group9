@@ -1,24 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ListUpgradesAvail : HideableUI
+public class ListUpgradesAvail : MonoBehaviour
 {
-    public TowerEntity main_tower;
-    public List<Upgrade> upgradesList;
+    public static UpgradeUI[] upgradeUIs = new UpgradeUI[4];
 
-    public void initialize(TowerEntity tower, List<Upgrade> upgrade_list)
+    public GameObject gameObject;
+    bool active;
+
+    public static void initialize(TowerEntity tower, List<Upgrade> upgrade_list)
     {
-        main_tower = tower;
+        // for (int i = 0; i < upgradeUIs.Length; i++)
+        // {
+        //     upgradeUIs[i].initialize(tower, upgrade_list[i]);
+        // }
+
+        int i = 0;
+
+        foreach (Upgrade item in upgrade_list)
+        {
+            upgradeUIs[i].initialize(tower, item);
+            i++;
+
+            // // Change color of button
+            // var colors = GetComponent<Button>().colors;
+            // colors.normalColor = Color.grey;
+            // GetComponent<Button>().colors = colors;
+        }
     }
 
-    public override void Hide()
-    {
+    // public static void Hide()
+    // {
 
-    }
+    // }
 
-    public override void Show()
-    {
+    // public static void Show()
+    // {
 
-    }
+    // }
 }

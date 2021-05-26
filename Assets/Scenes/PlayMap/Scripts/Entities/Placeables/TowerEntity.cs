@@ -231,6 +231,8 @@ public abstract class TowerEntity : PlaceableEntity
     {
         isUIOpen = true;
         rangeCircle.Show();
+        ListUpgradesAvail.initialize(this, upgradesAvailable);
+        UpgradePanel.OpenClosePanel(isUIOpen);
 
     }
 
@@ -238,6 +240,7 @@ public abstract class TowerEntity : PlaceableEntity
     {
         isUIOpen = false;
         rangeCircle.Hide();
+        UpgradePanel.OpenClosePanel(isUIOpen);
     }
 
     private bool isUIOpen = false;

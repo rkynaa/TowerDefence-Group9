@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class UpgradePanel : MonoBehaviour
 {
-    public GameObject gameObject;
-    bool active;
+    public static GameObject gameObject;
 
-    public void OpenClosePanel()
+    public static void OpenClosePanel(bool active)
     {
         if (active == false)
         {
             gameObject.transform.gameObject.SetActive(true);
-            active = true;
         }
         else
         {
             gameObject.transform.gameObject.SetActive(false);
-            active = false;
         }
     }
 }
