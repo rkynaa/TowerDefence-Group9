@@ -76,7 +76,7 @@ MonoBehaviour:
   attackingRange: 1
   attackSpeed: 1
   speed: 0.9
-  defeatReward: 5
+  defeatReward: 20
   partToRotate: {fileID: 6635688945463850802}
 --- !u!1 &6635688945463850803
 GameObject:

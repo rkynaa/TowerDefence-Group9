@@ -116,7 +116,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2.75
+      scalar: 2.1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -169,7 +169,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 7
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -866,7 +866,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 15
+      scalar: 20
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4818,7 +4818,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fca43dcd00639b428b50502032218a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damage: 0.6
   damage: 0.5
+  particleSystem: {fileID: 0}
   mode: 2
 --- !u!1 &6420249877821656561
 GameObject:
@@ -4947,15 +4949,14 @@ MonoBehaviour:
   name: Flamethower
   target: {fileID: 0}
   canAttack: 1
-  range: 3.25
+  range: 3.5
   attackSpeed: 4
   attackProjectile: {fileID: 0}
   firePoint: {fileID: 4523550939901370993}
   rangeCircle: {fileID: 1372274431069331080}
-  displayUpgList: {fileID: 0}
   enemyTag: Enemy
   partToRotate: {fileID: 8885618941416716621}
-  flameProj: {fileID: 0}
+  flameProj: {fileID: 799537510234334997}
   flame: {fileID: 799537510234334996}
 --- !u!1 &8580658318579656018
 GameObject:
@@ -5131,7 +5132,7 @@ PrefabInstance:
     - target: {fileID: 3456235513229426607, guid: adcd74e91e4222247b602ca6eb4fe1e4, type: 3}
       propertyPath: attachedTower
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7270703860072572242}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adcd74e91e4222247b602ca6eb4fe1e4, type: 3}
 --- !u!4 &4289843564218144051 stripped

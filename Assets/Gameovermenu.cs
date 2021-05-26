@@ -9,13 +9,13 @@ public class Gameovermenu : MonoBehaviour
     public void GameoverBack()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);//Loads the next scene in the queue
-
+        GameMaster.Reset();
     }
 
     public void Gameovermainmenu()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
-
+        GameMaster.Reset();
     }
 
     public void Quit()

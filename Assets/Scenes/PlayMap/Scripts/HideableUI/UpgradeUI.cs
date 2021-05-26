@@ -14,9 +14,8 @@ public class UpgradeUI : MonoBehaviour
     public TextMeshProUGUI text;
     public int index;
 
-    void Start()
+    void Awake()
     {
-        TowerPanel.upgradeUIs[index] = this;
         background = GetComponent<Image>();
     }
 

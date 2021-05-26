@@ -9,11 +9,6 @@ public class BuildManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null)
-        {
-            Debug.LogError("More than one BuildManager created!");
-            return;
-        }
         instance = this;
     }
 
@@ -96,9 +91,11 @@ public class BuildManager : MonoBehaviour
     /// <param name="tower">The tower to build</param>
     public void BuildTower(TowerEntity tower)
     {
+        Debug.Log("Building tower " + tower.Cost);
         if (GameMaster.instance.HasMoney(tower.Cost))
         {
-            if(toBuild != null)
+            Debug.Log("Building tower 2");
+            if (toBuild != null)
             {
                 if (!toBuild.CancelMove())
                 {
@@ -111,6 +108,7 @@ public class BuildManager : MonoBehaviour
                 }
             }
 
+            Debug.Log("Building tower 3");
             leftHeld = false;
             toBuild = Instantiate(tower);
             toBuild.curState = PlaceableEntity.State.MOVING;

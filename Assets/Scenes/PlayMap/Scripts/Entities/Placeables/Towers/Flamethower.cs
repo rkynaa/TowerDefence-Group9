@@ -20,33 +20,31 @@ public class Flamethower : TowerEntity
 
         // Initialise upgrades here
         AddUpgrade(new UpgradeDamage());
+        AddUpgrade(new UpgradeSpeed());
     }
 
     protected override void Update()
     {
         base.Update();
 
-        if (target == null && flame.isPlaying)
+        if (target == null && flameProj.particleSystem.isPlaying)
         {
-            flame.Stop();
+            flameProj.particleSystem.Stop();
         }
     }
 
     public override void Attack()
     {
-        flame.Play();
+        flameProj.particleSystem.Play();
     }
 
     private class UpgradeDamage : Upgrade
     {
-        private new Flamethower tower;
-
-        readonly int[] cost = new int[5] { 50, 60, 70, 90, 150 };
+        readonly int[] cost = new int[] { 100, 150, 200, 300, 500 };
 
         public UpgradeDamage()
         {
             maxLevel = cost.Length;
-            tower = (Flamethower) base.tower; // Safe
         }
 
         protected override int CalcCost()
@@ -61,7 +59,33 @@ public class Flamethower : TowerEntity
 
         public override void OnUpgrade()
         {
-            tower.flameProj.damage += 0.1f;
+            ((Flamethower)tower).flameProj.damage += 0.4f;
+        }
+    }
+
+    private class UpgradeSpeed : Upgrade
+    {
+        readonly int[] cost = new int[] { 100, 150, 200, 300, 500 };
+
+        public UpgradeSpeed()
+        {
+            maxLevel = cost.Length;
+        }
+
+        protected override int CalcCost()
+        {
+            return cost[level];
+        }
+
+        public override string GetName()
+        {
+            return "Speed";
+        }
+
+        public override void OnUpgrade()
+        {
+            Flamethower flamethower = (Flamethower)tower;
+            flamethower.main.simulationSpeed += 0.5f;
         }
     }
 }

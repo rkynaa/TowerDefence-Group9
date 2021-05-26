@@ -6,7 +6,8 @@ using TMPro;
 
 public class TowerPanel : MonoBehaviour
 {
-    public static UpgradeUI[] upgradeUIs = new UpgradeUI[4];
+
+    public UpgradeUI[] upgradeUIs;
     public static TowerEntity tower;
 
     [HideInInspector]
@@ -46,15 +47,15 @@ public class TowerPanel : MonoBehaviour
 
     public static void UpdateUpgrades()
     {
-        for (int i = 0; i < upgradeUIs.Length; i++)
+        for (int i = 0; i < instance.upgradeUIs.Length; i++)
         {
             if(i < tower.upgradesAvailable.Count)
             {
-                upgradeUIs[i].Setup(tower, tower.upgradesAvailable[i]);
+                instance.upgradeUIs[i].Setup(tower, tower.upgradesAvailable[i]);
             }
             else
             {
-                upgradeUIs[i].Hide();
+                instance.upgradeUIs[i].Hide();
             }
         }
         UpdateUI();
@@ -80,7 +81,7 @@ public class TowerPanel : MonoBehaviour
                 instance.repairButton.color = GameMaster.red;
             }
 
-            foreach (UpgradeUI ui in upgradeUIs)
+            foreach (UpgradeUI ui in instance.upgradeUIs)
             {
                 ui.UpdateColor(moneyAvailable);
             }
@@ -91,7 +92,10 @@ public class TowerPanel : MonoBehaviour
     {
         active = false;
         instance.gameObject.SetActive(false);
-        tower.CloseUI();
+        if (tower != null)
+        {
+            tower.CloseUI();
+        }
     }
 
     public static void Show()

@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class FlameProjectile : MonoBehaviour
 {
-    public float damage = 0.8f;
+    [SerializeField]
+    private float _damage = 0.8f;
+    [HideInInspector]
+    public float damage;
 
-    private new ParticleSystem particleSystem;
+    [HideInInspector]
+    public new ParticleSystem particleSystem;
     private List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
 
     public enum Mode { NONE, ENEMY, TOWER }
@@ -14,6 +18,7 @@ public class FlameProjectile : MonoBehaviour
 
     private void Start()
     {
+        damage = _damage;
         particleSystem = GetComponent<ParticleSystem>();
     }
 

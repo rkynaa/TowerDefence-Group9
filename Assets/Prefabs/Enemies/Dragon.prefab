@@ -76,7 +76,7 @@ MonoBehaviour:
   attackingRange: 4
   attackSpeed: 0.5
   speed: 0.5
-  defeatReward: 100
+  defeatReward: 200
   partToRotate: {fileID: 7621134030869334110}
   flame: {fileID: 6008296660083703823}
 --- !u!1 &7621134030869334111
@@ -4997,7 +4997,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fca43dcd00639b428b50502032218a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damage: 1
   damage: 1
+  particleSystem: {fileID: 0}
   mode: 1
 --- !u!1001 &7621134030097663429
 PrefabInstance:

@@ -30,4 +30,10 @@ public class Dragon : EnemyEntity
     {
         flame.Play();
     }
+
+    public override bool OnDeath()
+    {
+        GameMaster.instance.stats.bossesKilled += 1;
+        return base.OnDeath();
+    }
 }

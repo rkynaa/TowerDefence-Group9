@@ -24,6 +24,7 @@ public class Shop : MonoBehaviour
         nameText.text = tower.name;
         background = GetComponent<Image>();
         shops.Add(this);
+        UpdateColor(GameMaster.instance.GetMoney());
     }
 
     public void OnDestroy()

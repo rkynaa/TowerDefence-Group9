@@ -52,6 +52,10 @@ public abstract class TowerEntity : PlaceableEntity
     {
         base.Start();
 
+        if(attackProjectile != null)
+        {
+            attackProjectile = Instantiate(attackProjectile, new Vector3(-1000, 0), transform.rotation);
+        }
         rangeCircle.Initialise(this, Range);
 
         if (canAttack)
@@ -94,7 +98,7 @@ public abstract class TowerEntity : PlaceableEntity
         {
             return 0;
         }
-        return (int)(Cost * 0.35);
+        return (int)(Cost * 0.1);
     }
 
     public void RepairTower()
@@ -234,7 +238,6 @@ public abstract class TowerEntity : PlaceableEntity
         isUIOpen = true;
         rangeCircle.Show();
         TowerPanel.Setup(this);
-
     }
 
     public void CloseUI()

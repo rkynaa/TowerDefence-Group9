@@ -16,7 +16,7 @@ public abstract class Upgrade
     /// <returns>name + level</returns>
     public override string ToString()
     {
-        if (maxLevel > 0 && level >= 0)
+        if (maxLevel > 1 && level >= 0)
         {
             return GetName() + " " + Roman.To(level + 1); // Display name with level
         }

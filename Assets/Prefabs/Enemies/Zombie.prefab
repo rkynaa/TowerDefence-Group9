@@ -175,7 +175,7 @@ MonoBehaviour:
   attackingRange: 1
   attackSpeed: 1
   speed: 1
-  defeatReward: 1
+  defeatReward: 10
   partToRotate: {fileID: 8616888947750267566}
   test: {fileID: 0}
 --- !u!1001 &6512357382454285395

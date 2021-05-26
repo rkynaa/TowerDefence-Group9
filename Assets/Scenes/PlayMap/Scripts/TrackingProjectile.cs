@@ -20,27 +20,56 @@ public class TrackingProjectile : Projectile
     {
         base.Update();
 
-        if(!enableTracking)
+        if(!enableTracking || !active)
         {
             return;
         }
 
-        if (tower.target != null)
+        if(target == null)
         {
-            if (target != tower.target.transform)
+            GetNewTarget(null);
+        }
+
+        if (target != null)
+        {
+            Vector3 dir = target.transform.position - transform.position;
+
+            Quaternion rotation = Quaternion.LookRotation(dir, transform.TransformDirection(Vector3.back));
+            transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
+        }
+    }
+
+    protected override void HitTarget(EnemyEntity target)
+    {
+        base.HitTarget(target);
+
+        if (pierce > 0)
+        {
+            GetNewTarget(target.transform);
+        }
+    }
+
+    private void GetNewTarget(Transform old_target)
+    {
+        float shortestDistance = Mathf.Infinity;
+        EnemyEntity nearestEnemy = null;
+
+        foreach (EnemyEntity enemy in GameMaster.instance.enemiesAlive)
+        {
+            if(enemy.transform != old_target)
             {
-                target = tower.target.transform;
-                lifeTime += 0.2f;
+                float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+                if (distanceToEnemy < shortestDistance)
+                {
+                    shortestDistance = distanceToEnemy;
+                    nearestEnemy = enemy;
+                }
             }
         }
-        else if(target == null)
+
+        if (nearestEnemy != null)
         {
-            return;
+            target = nearestEnemy.transform;
         }
-
-        Vector3 dir = target.transform.position - transform.position;
-
-        Quaternion rotation = Quaternion.LookRotation(dir, transform.TransformDirection(Vector3.back));
-        transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
     }
 }

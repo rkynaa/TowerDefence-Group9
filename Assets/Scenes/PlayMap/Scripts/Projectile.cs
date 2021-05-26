@@ -17,31 +17,37 @@ public class Projectile : MonoBehaviour
 
     public float lifeTime = 1f;
 
+    public bool active = false;
+
     public virtual void Fire(Transform target)
     {
         this.target = target;
+        active = true;
         // direction = target.transform.position - transform.position;
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        if(lifeTime <= 0)
+        if(active)
         {
-            Destroy(gameObject);
-            return;
+            if (lifeTime <= 0)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            lifeTime -= Time.deltaTime;
+
+            float step = speed * Time.deltaTime;
+
+            // Vector3 dir = target.transform.position - transform.position;
+
+            // Quaternion rotation = Quaternion.LookRotation(dir, transform.TransformDirection(Vector3.back));
+            // transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
+
+            // move towards the target
+            transform.position = Vector2.MoveTowards(transform.position, transform.position + transform.up, step);
         }
-        lifeTime -= Time.deltaTime;
-
-        float step = speed * Time.deltaTime;
-
-        // Vector3 dir = target.transform.position - transform.position;
-
-        // Quaternion rotation = Quaternion.LookRotation(dir, transform.TransformDirection(Vector3.back));
-        // transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
-
-        // move towards the target
-        transform.position = Vector2.MoveTowards(transform.position, transform.position + transform.up, step);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

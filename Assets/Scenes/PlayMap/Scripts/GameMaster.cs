@@ -21,6 +21,10 @@ public class GameMaster
         else
         {
             Debug.Log("Detected duplicate GameMaster object.");
+            if (!instance.started)
+            {
+                instance.Start();
+            }
         }
     }
 
@@ -28,8 +32,9 @@ public class GameMaster
     {
         Debug.Log("Creating GameMaster object.");
         instance = new GameMaster();
-        instance.Start();
     }
+
+    public bool started = false;
 
     /// <summary>
     /// Multiplier for tower and upgrade cost
@@ -44,7 +49,7 @@ public class GameMaster
     [HideInInspector]
     public List<EnemyEntity> enemiesAlive = new List<EnemyEntity>();
 
-    private int money = 1000;
+    public int money = 800;
 
     [HideInInspector]
     public Statistics stats = new Statistics();
@@ -64,8 +69,8 @@ public class GameMaster
 
     void Start()
     {
-        money = (int)(money / costDifficulty);
         UpdateMoney();
+        started = true;
     }
 
     public int GetMoney()
@@ -114,11 +119,11 @@ public class GameMaster
     /// </summary>
     public void UpdateMoney()
     {
-        Shop.UpdateColor();
-        TowerPanel.UpdateUI();
         if (moneyText != null)
         {
             moneyText.text = money.ToString();//kushan
         }
+        Shop.UpdateColor();
+        TowerPanel.UpdateUI();
     }
 }

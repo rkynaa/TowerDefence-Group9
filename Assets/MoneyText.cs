@@ -10,5 +10,6 @@ public class MoneyText : MonoBehaviour
     void Awake()
     {
         GameMaster.instance.moneyText = GetComponent<TextMeshProUGUI>();
+        GameMaster.instance.UpdateMoney();
     }
 }

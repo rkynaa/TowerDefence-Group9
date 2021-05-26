@@ -25,7 +25,7 @@ public class ArcherTower : TowerEntity
 
     private class UpgradeDamage : Upgrade
     {
-        readonly int[] cost = new int[5] { 50, 60, 70, 90, 150 };
+        readonly int[] cost = new int[] { 60, 100, 200, 300, 500 };
 
         public UpgradeDamage()
         {
@@ -44,13 +44,13 @@ public class ArcherTower : TowerEntity
 
         public override void OnUpgrade()
         {
-            tower.attackProjectile.damage += 5;
+            tower.attackProjectile.damage += 1;
         }
     }
 
     private class UpgradeSpeed : Upgrade
     {
-        readonly int[] cost = new int[5] { 45, 65, 70, 90, 150 };
+        readonly int[] cost = new int[] { 60, 100, 200, 300, 500 };
 
         public UpgradeSpeed()
         {
@@ -69,17 +69,22 @@ public class ArcherTower : TowerEntity
 
         public override void OnUpgrade()
         {
-            tower.attackSpeed += 0.5f;
+            tower.attackSpeed += 0.3f;
         }
     }
 
     private class UpgradeRange : Upgrade
     {
-        readonly int cost = 150;
+        readonly int[] cost = new int[] { 100, 300 };
+
+        public UpgradeRange()
+        {
+            maxLevel = cost.Length;
+        }
 
         protected override int CalcCost()
         {
-            return cost;
+            return cost[level];
         }
 
         public override string GetName()
@@ -95,7 +100,7 @@ public class ArcherTower : TowerEntity
 
     private class UpgradeDoubleShot : Upgrade
     {
-        readonly int cost = 200;
+        readonly int cost = 500;
 
         protected override int CalcCost()
         {

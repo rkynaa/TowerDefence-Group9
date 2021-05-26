@@ -11,6 +11,7 @@ public class MachineGunTower : TowerEntity
 
         // Initialise upgrades here
         AddUpgrade(new UpgradeDamage());
+        AddUpgrade(new UpgradeSpeed());
         AddUpgrade(new UpgradePierce());
     }
 
@@ -68,6 +69,31 @@ public class MachineGunTower : TowerEntity
         public override void OnUpgrade()
         {
             tower.attackProjectile.pierce += 1;
+        }
+    }
+
+    private class UpgradeSpeed : Upgrade
+    {
+        readonly int[] cost = new int[] { 60, 100, 200, 300, 500 };
+
+        public UpgradeSpeed()
+        {
+            maxLevel = cost.Length;
+        }
+
+        protected override int CalcCost()
+        {
+            return cost[level];
+        }
+
+        public override string GetName()
+        {
+            return "Attack Speed";
+        }
+
+        public override void OnUpgrade()
+        {
+            tower.attackSpeed += 0.4f;
         }
     }
 }
